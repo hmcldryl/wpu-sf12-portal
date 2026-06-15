@@ -4,19 +4,33 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import QuestionCard from "./QuestionCard";
 import ProgressBar from "./ProgressBar";
+import SelectWithOther from "./SelectWithOther";
 import { SF12_STEPS } from "@/lib/sf12Questions";
 import { computeSF12Scores } from "@/lib/sf12Scoring";
-import { EmploymentType, RespondentInfo, Sex } from "@/lib/types";
+import { EmploymentType, RespondentInfo, YesNo } from "@/lib/types";
+import {
+  ACADEMIC_RANK_OPTIONS,
+  AGE_GROUP_OPTIONS,
+  CAMPUS_OPTIONS,
+  COLLEGE_UNIT_OPTIONS,
+  EMPLOYMENT_STATUS_OPTIONS,
+  GENDER_OPTIONS,
+  SEX_AT_BIRTH_OPTIONS,
+} from "@/lib/respondentOptions";
 
 const TOTAL_STEPS = SF12_STEPS.length + 2; // respondent info + questions + review
 
 const EMPTY_RESPONDENT: RespondentInfo = {
-  name: "",
-  employeeId: "",
-  department: "",
+  collegeUnit: "",
+  campus: "",
+  ageGroup: "",
+  sexAtBirth: "",
+  gender: "",
   employmentType: "Faculty",
-  age: 0,
-  sex: "Male",
+  academicRank: undefined,
+  employmentStatus: "",
+  salaryGrade: 0,
+  walkableSpaces: "Yes",
 };
 
 export default function AssessmentForm() {
@@ -33,11 +47,16 @@ export default function AssessmentForm() {
 
   function validateStep(): boolean {
     if (step === 0) {
-      if (!respondent.name.trim()) return false;
-      if (!respondent.department.trim()) return false;
+      if (!respondent.collegeUnit.trim()) return false;
+      if (!respondent.campus.trim()) return false;
+      if (!respondent.ageGroup.trim()) return false;
+      if (!respondent.sexAtBirth.trim()) return false;
+      if (!respondent.gender.trim()) return false;
       if (!respondent.employmentType) return false;
-      if (!respondent.age || respondent.age <= 0) return false;
-      if (!respondent.sex) return false;
+      if (respondent.employmentType === "Faculty" && !respondent.academicRank?.trim()) return false;
+      if (!respondent.employmentStatus.trim()) return false;
+      if (!respondent.salaryGrade || respondent.salaryGrade <= 0) return false;
+      if (!respondent.walkableSpaces) return false;
       return true;
     }
 
@@ -113,41 +132,50 @@ export default function AssessmentForm() {
         <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6 sm:p-8">
           <h2 className="text-lg font-semibold text-[#1a3a5c] mb-4">Respondent Details</h2>
           <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Full Name <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                value={respondent.name}
-                onChange={(e) => setRespondent({ ...respondent, name: e.target.value })}
-                className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a3a5c]"
-              />
-            </div>
+            <SelectWithOther
+              label="College / Unit"
+              required
+              value={respondent.collegeUnit}
+              options={COLLEGE_UNIT_OPTIONS}
+              onChange={(v) => setRespondent({ ...respondent, collegeUnit: v })}
+              otherPlaceholder="Please specify your college / unit"
+            />
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Employee ID
-              </label>
-              <input
-                type="text"
-                value={respondent.employeeId}
-                onChange={(e) => setRespondent({ ...respondent, employeeId: e.target.value })}
-                className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a3a5c]"
-              />
-            </div>
+            <SelectWithOther
+              label="Campus / Station"
+              required
+              value={respondent.campus}
+              options={CAMPUS_OPTIONS}
+              onChange={(v) => setRespondent({ ...respondent, campus: v })}
+              otherPlaceholder="Please specify your campus / station"
+            />
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Department / College <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                value={respondent.department}
-                onChange={(e) => setRespondent({ ...respondent, department: e.target.value })}
-                className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a3a5c]"
-              />
-            </div>
+            <SelectWithOther
+              label="Age"
+              required
+              value={respondent.ageGroup}
+              options={AGE_GROUP_OPTIONS}
+              onChange={(v) => setRespondent({ ...respondent, ageGroup: v })}
+              otherPlaceholder="Please specify your age group"
+            />
+
+            <SelectWithOther
+              label="Sex at Birth"
+              required
+              value={respondent.sexAtBirth}
+              options={SEX_AT_BIRTH_OPTIONS}
+              onChange={(v) => setRespondent({ ...respondent, sexAtBirth: v })}
+              otherPlaceholder="Please specify"
+            />
+
+            <SelectWithOther
+              label="Gender"
+              required
+              value={respondent.gender}
+              options={GENDER_OPTIONS}
+              onChange={(v) => setRespondent({ ...respondent, gender: v })}
+              otherPlaceholder="Please specify"
+            />
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -155,9 +183,14 @@ export default function AssessmentForm() {
               </label>
               <select
                 value={respondent.employmentType}
-                onChange={(e) =>
-                  setRespondent({ ...respondent, employmentType: e.target.value as EmploymentType })
-                }
+                onChange={(e) => {
+                  const employmentType = e.target.value as EmploymentType;
+                  setRespondent({
+                    ...respondent,
+                    employmentType,
+                    academicRank: employmentType === "Faculty" ? respondent.academicRank : undefined,
+                  });
+                }}
                 className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a3a5c]"
               >
                 <option value="Faculty">Faculty</option>
@@ -165,31 +198,51 @@ export default function AssessmentForm() {
               </select>
             </div>
 
+            {respondent.employmentType === "Faculty" && (
+              <SelectWithOther
+                label="Academic Rank"
+                required
+                value={respondent.academicRank ?? ""}
+                options={ACADEMIC_RANK_OPTIONS}
+                onChange={(v) => setRespondent({ ...respondent, academicRank: v })}
+                otherPlaceholder="Please specify your academic rank"
+              />
+            )}
+
+            <SelectWithOther
+              label="Employment Status"
+              required
+              value={respondent.employmentStatus}
+              options={EMPLOYMENT_STATUS_OPTIONS}
+              onChange={(v) => setRespondent({ ...respondent, employmentStatus: v })}
+              otherPlaceholder="Please specify your employment status"
+            />
+
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                Age <span className="text-red-500">*</span>
+                Salary Grade <span className="text-red-500">*</span>
               </label>
               <input
                 type="number"
                 min={1}
-                value={respondent.age || ""}
-                onChange={(e) => setRespondent({ ...respondent, age: Number(e.target.value) })}
+                max={33}
+                value={respondent.salaryGrade || ""}
+                onChange={(e) => setRespondent({ ...respondent, salaryGrade: Number(e.target.value) })}
                 className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a3a5c]"
               />
             </div>
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                Sex <span className="text-red-500">*</span>
+                Availability of walkable spaces near your workplace <span className="text-red-500">*</span>
               </label>
               <select
-                value={respondent.sex}
-                onChange={(e) => setRespondent({ ...respondent, sex: e.target.value as Sex })}
+                value={respondent.walkableSpaces}
+                onChange={(e) => setRespondent({ ...respondent, walkableSpaces: e.target.value as YesNo })}
                 className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a3a5c]"
               >
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="Prefer not to say">Prefer not to say</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
               </select>
             </div>
           </div>
@@ -208,22 +261,51 @@ export default function AssessmentForm() {
         <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6 sm:p-8">
           <h2 className="text-lg font-semibold text-[#1a3a5c] mb-4">Review &amp; Submit</h2>
           <p className="text-sm text-gray-600 mb-4">
-            You&apos;re about to submit your responses for{" "}
-            <strong>{respondent.name}</strong> ({respondent.department}). Click submit to
-            receive your health assessment results.
+            You&apos;re about to submit your responses. Click submit to receive your health
+            assessment results.
           </p>
           <dl className="text-sm text-gray-700 space-y-1 mb-6">
+            <div className="flex justify-between border-b border-gray-100 py-1">
+              <dt>College / Unit</dt>
+              <dd>{respondent.collegeUnit}</dd>
+            </div>
+            <div className="flex justify-between border-b border-gray-100 py-1">
+              <dt>Campus / Station</dt>
+              <dd>{respondent.campus}</dd>
+            </div>
+            <div className="flex justify-between border-b border-gray-100 py-1">
+              <dt>Age</dt>
+              <dd>{respondent.ageGroup}</dd>
+            </div>
+            <div className="flex justify-between border-b border-gray-100 py-1">
+              <dt>Sex at Birth</dt>
+              <dd>{respondent.sexAtBirth}</dd>
+            </div>
+            <div className="flex justify-between border-b border-gray-100 py-1">
+              <dt>Gender</dt>
+              <dd>{respondent.gender}</dd>
+            </div>
             <div className="flex justify-between border-b border-gray-100 py-1">
               <dt>Employment Type</dt>
               <dd>{respondent.employmentType}</dd>
             </div>
+            {respondent.academicRank && (
+              <div className="flex justify-between border-b border-gray-100 py-1">
+                <dt>Academic Rank</dt>
+                <dd>{respondent.academicRank}</dd>
+              </div>
+            )}
             <div className="flex justify-between border-b border-gray-100 py-1">
-              <dt>Age</dt>
-              <dd>{respondent.age}</dd>
+              <dt>Employment Status</dt>
+              <dd>{respondent.employmentStatus}</dd>
             </div>
             <div className="flex justify-between border-b border-gray-100 py-1">
-              <dt>Sex</dt>
-              <dd>{respondent.sex}</dd>
+              <dt>Salary Grade</dt>
+              <dd>{respondent.salaryGrade}</dd>
+            </div>
+            <div className="flex justify-between border-b border-gray-100 py-1">
+              <dt>Walkable Spaces Available</dt>
+              <dd>{respondent.walkableSpaces}</dd>
             </div>
           </dl>
         </div>

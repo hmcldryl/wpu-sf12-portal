@@ -22,12 +22,16 @@ async function getResponses(): Promise<SF12Response[]> {
       return {
         id: doc.id,
         timestamp: data.timestamp,
-        name: data.name,
-        employeeId: data.employeeId || "",
-        department: data.department,
+        collegeUnit: data.collegeUnit,
+        campus: data.campus,
+        ageGroup: data.ageGroup,
+        sexAtBirth: data.sexAtBirth,
+        gender: data.gender,
         employmentType: data.employmentType,
-        age: data.age,
-        sex: data.sex,
+        academicRank: data.academicRank || "",
+        employmentStatus: data.employmentStatus,
+        salaryGrade: data.salaryGrade,
+        walkableSpaces: data.walkableSpaces,
         rawResponses: data.rawResponses,
         pcs12: data.pcs12,
         mcs12: data.mcs12,
@@ -95,9 +99,13 @@ export default async function DashboardPage() {
 
         {/* Section 3 — Breakdown by Group */}
         <section className="space-y-6">
-          <DepartmentBreakdown responses={responses} field="department" title="Department / College" />
+          <DepartmentBreakdown responses={responses} field="collegeUnit" title="College / Unit" />
+          <DepartmentBreakdown responses={responses} field="campus" title="Campus / Station" />
+          <DepartmentBreakdown responses={responses} field="ageGroup" title="Age Group" />
           <DepartmentBreakdown responses={responses} field="employmentType" title="Employment Type" />
-          <DepartmentBreakdown responses={responses} field="sex" title="Sex" />
+          <DepartmentBreakdown responses={responses} field="employmentStatus" title="Employment Status" />
+          <DepartmentBreakdown responses={responses} field="sexAtBirth" title="Sex at Birth" />
+          <DepartmentBreakdown responses={responses} field="gender" title="Gender" />
         </section>
 
         {/* Section 4 — Individual Responses */}

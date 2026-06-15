@@ -8,14 +8,27 @@ interface ResponsesTableProps {
   responses: SF12Response[];
 }
 
-type SortKey = "timestamp" | "name" | "employeeId" | "department" | "employmentType" | "age" | "sex" | "pcs12" | "mcs12";
+type SortKey =
+  | "timestamp"
+  | "collegeUnit"
+  | "campus"
+  | "ageGroup"
+  | "sexAtBirth"
+  | "gender"
+  | "employmentType"
+  | "academicRank"
+  | "employmentStatus"
+  | "salaryGrade"
+  | "walkableSpaces"
+  | "pcs12"
+  | "mcs12";
 
 const PAGE_SIZE = 20;
 
 export default function ResponsesTable({ responses }: ResponsesTableProps) {
   const [search, setSearch] = useState("");
   const [employmentFilter, setEmploymentFilter] = useState("");
-  const [sexFilter, setSexFilter] = useState("");
+  const [genderFilter, setGenderFilter] = useState("");
   const [pcsBandFilter, setPcsBandFilter] = useState("");
   const [mcsBandFilter, setMcsBandFilter] = useState("");
   const [sortKey, setSortKey] = useState<SortKey>("timestamp");
@@ -28,16 +41,16 @@ export default function ResponsesTable({ responses }: ResponsesTableProps) {
 
     return responses.filter((r) => {
       if (term) {
-        const haystack = `${r.name} ${r.employeeId || ""} ${r.department}`.toLowerCase();
+        const haystack = `${r.collegeUnit} ${r.campus}`.toLowerCase();
         if (!haystack.includes(term)) return false;
       }
       if (employmentFilter && r.employmentType !== employmentFilter) return false;
-      if (sexFilter && r.sex !== sexFilter) return false;
+      if (genderFilter && r.gender !== genderFilter) return false;
       if (pcsBandFilter && getScoreBand(r.pcs12) !== pcsBandFilter) return false;
       if (mcsBandFilter && getScoreBand(r.mcs12) !== mcsBandFilter) return false;
       return true;
     });
-  }, [responses, search, employmentFilter, sexFilter, pcsBandFilter, mcsBandFilter]);
+  }, [responses, search, employmentFilter, genderFilter, pcsBandFilter, mcsBandFilter]);
 
   const sorted = useMemo(() => {
     const list = [...filtered];
@@ -76,12 +89,16 @@ export default function ResponsesTable({ responses }: ResponsesTableProps) {
 
   const columns: { key: SortKey; label: string }[] = [
     { key: "timestamp", label: "Timestamp" },
-    { key: "name", label: "Name" },
-    { key: "employeeId", label: "Employee ID" },
-    { key: "department", label: "Department" },
+    { key: "collegeUnit", label: "College / Unit" },
+    { key: "campus", label: "Campus / Station" },
+    { key: "ageGroup", label: "Age" },
+    { key: "sexAtBirth", label: "Sex at Birth" },
+    { key: "gender", label: "Gender" },
     { key: "employmentType", label: "Type" },
-    { key: "age", label: "Age" },
-    { key: "sex", label: "Sex" },
+    { key: "academicRank", label: "Academic Rank" },
+    { key: "employmentStatus", label: "Employment Status" },
+    { key: "salaryGrade", label: "Salary Grade" },
+    { key: "walkableSpaces", label: "Walkable Spaces" },
     { key: "pcs12", label: "PCS-12" },
     { key: "mcs12", label: "MCS-12" },
   ];
@@ -93,7 +110,7 @@ export default function ResponsesTable({ responses }: ResponsesTableProps) {
       <div className="flex flex-wrap gap-2 mb-4">
         <input
           type="text"
-          placeholder="Search by name, ID, or department..."
+          placeholder="Search by college/unit or campus..."
           value={search}
           onChange={(e) => {
             setSearch(e.target.value);
@@ -111,13 +128,14 @@ export default function ResponsesTable({ responses }: ResponsesTableProps) {
           <option value="Staff">Staff</option>
         </select>
         <select
-          value={sexFilter}
-          onChange={(e) => { setSexFilter(e.target.value); setPage(1); }}
+          value={genderFilter}
+          onChange={(e) => { setGenderFilter(e.target.value); setPage(1); }}
           className="border border-gray-300 rounded-md px-3 py-2 text-sm"
         >
-          <option value="">All Sexes</option>
+          <option value="">All Genders</option>
           <option value="Male">Male</option>
           <option value="Female">Female</option>
+          <option value="Non-binary">Non-binary</option>
           <option value="Prefer not to say">Prefer not to say</option>
         </select>
         <select
@@ -176,12 +194,16 @@ export default function ResponsesTable({ responses }: ResponsesTableProps) {
                   >
                     <td className="py-2 pr-4">{(currentPage - 1) * PAGE_SIZE + idx + 1}</td>
                     <td className="py-2 pr-4 whitespace-nowrap">{new Date(r.timestamp).toLocaleString()}</td>
-                    <td className="py-2 pr-4">{r.name}</td>
-                    <td className="py-2 pr-4">{r.employeeId || "—"}</td>
-                    <td className="py-2 pr-4">{r.department}</td>
+                    <td className="py-2 pr-4">{r.collegeUnit}</td>
+                    <td className="py-2 pr-4">{r.campus}</td>
+                    <td className="py-2 pr-4">{r.ageGroup}</td>
+                    <td className="py-2 pr-4">{r.sexAtBirth}</td>
+                    <td className="py-2 pr-4">{r.gender}</td>
                     <td className="py-2 pr-4">{r.employmentType}</td>
-                    <td className="py-2 pr-4">{r.age}</td>
-                    <td className="py-2 pr-4">{r.sex}</td>
+                    <td className="py-2 pr-4">{r.academicRank || "—"}</td>
+                    <td className="py-2 pr-4">{r.employmentStatus}</td>
+                    <td className="py-2 pr-4">{r.salaryGrade}</td>
+                    <td className="py-2 pr-4">{r.walkableSpaces}</td>
                     <td className="py-2 pr-4">{r.pcs12.toFixed(2)}</td>
                     <td className="py-2 pr-4">{r.mcs12.toFixed(2)}</td>
                     <td className="py-2 pr-4">{pcsBand}</td>

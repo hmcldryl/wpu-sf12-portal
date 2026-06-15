@@ -37,9 +37,9 @@ function ReportDocument({ responses }: ReportProps) {
   const belowMCS = responses.filter((r) => r.mcs12 < 45).length;
   const total = stats.total || 1;
 
-  const byDepartment = groupByField(responses, "department");
+  const byCollegeUnit = groupByField(responses, "collegeUnit");
   const byEmploymentType = groupByField(responses, "employmentType");
-  const bySex = groupByField(responses, "sex");
+  const byGender = groupByField(responses, "gender");
 
   return (
     <Document>
@@ -127,15 +127,15 @@ function ReportDocument({ responses }: ReportProps) {
       <Page size="A4" style={styles.page}>
         <Text style={styles.sectionTitle}>Breakdown by Group</Text>
 
-        <Text style={[styles.text, { fontWeight: "bold" }]}>By Department / College</Text>
+        <Text style={[styles.text, { fontWeight: "bold" }]}>By College / Unit</Text>
         <View style={styles.table}>
           <View style={styles.tableHeaderRow}>
-            <Text style={styles.cellHeader}>Department</Text>
+            <Text style={styles.cellHeader}>College / Unit</Text>
             <Text style={styles.cellHeader}>Count</Text>
             <Text style={styles.cellHeader}>Avg PCS-12</Text>
             <Text style={styles.cellHeader}>Avg MCS-12</Text>
           </View>
-          {Object.entries(byDepartment).map(([name, s]) => (
+          {Object.entries(byCollegeUnit).map(([name, s]) => (
             <View style={styles.tableRow} key={name}>
               <Text style={styles.cell}>{name}</Text>
               <Text style={styles.cell}>{s.count}</Text>
@@ -163,15 +163,15 @@ function ReportDocument({ responses }: ReportProps) {
           ))}
         </View>
 
-        <Text style={[styles.text, { fontWeight: "bold" }]}>By Sex</Text>
+        <Text style={[styles.text, { fontWeight: "bold" }]}>By Gender</Text>
         <View style={styles.table}>
           <View style={styles.tableHeaderRow}>
-            <Text style={styles.cellHeader}>Sex</Text>
+            <Text style={styles.cellHeader}>Gender</Text>
             <Text style={styles.cellHeader}>Count</Text>
             <Text style={styles.cellHeader}>Avg PCS-12</Text>
             <Text style={styles.cellHeader}>Avg MCS-12</Text>
           </View>
-          {Object.entries(bySex).map(([name, s]) => (
+          {Object.entries(byGender).map(([name, s]) => (
             <View style={styles.tableRow} key={name}>
               <Text style={styles.cell}>{name}</Text>
               <Text style={styles.cell}>{s.count}</Text>
@@ -225,12 +225,16 @@ export async function GET() {
     return {
       id: doc.id,
       timestamp: data.timestamp,
-      name: data.name,
-      employeeId: data.employeeId || "",
-      department: data.department,
+      collegeUnit: data.collegeUnit,
+      campus: data.campus,
+      ageGroup: data.ageGroup,
+      sexAtBirth: data.sexAtBirth,
+      gender: data.gender,
       employmentType: data.employmentType,
-      age: data.age,
-      sex: data.sex,
+      academicRank: data.academicRank || "",
+      employmentStatus: data.employmentStatus,
+      salaryGrade: data.salaryGrade,
+      walkableSpaces: data.walkableSpaces,
       rawResponses: data.rawResponses,
       pcs12: data.pcs12,
       mcs12: data.mcs12,

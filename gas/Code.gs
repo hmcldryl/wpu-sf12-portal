@@ -6,8 +6,8 @@ function doPost(e) {
     // Write header row on first submission
     if (sheet.getLastRow() === 0) {
       sheet.appendRow([
-        'Timestamp', 'Name', 'Employee ID', 'Department', 'Employment Type',
-        'Age', 'Sex',
+        'Timestamp', 'College/Unit', 'Campus/Station', 'Age Group', 'Sex at Birth', 'Gender',
+        'Employment Type', 'Academic Rank', 'Employment Status', 'Salary Grade', 'Walkable Spaces Available',
         'Q1', 'Q2', 'Q3', 'Q4', 'Q5', 'Q6', 'Q7',
         'Q8', 'Q9', 'Q10', 'Q11', 'Q12',
         'PCS-12', 'MCS-12',
@@ -25,12 +25,16 @@ function doPost(e) {
 
     sheet.appendRow([
       data.timestamp,
-      data.name,
-      data.employeeId || '',
-      data.department,
+      data.collegeUnit,
+      data.campus,
+      data.ageGroup,
+      data.sexAtBirth,
+      data.gender,
       data.employmentType,
-      data.age,
-      data.sex,
+      data.academicRank || '',
+      data.employmentStatus,
+      data.salaryGrade,
+      data.walkableSpaces,
       r.Q1, r.Q2, r.Q3, r.Q4, r.Q5, r.Q6, r.Q7,
       r.Q8, r.Q9, r.Q10, r.Q11, r.Q12,
       data.pcs12,

@@ -1,16 +1,34 @@
 export type EmploymentType = "Faculty" | "Staff";
 
-export type Sex = "Male" | "Female" | "Prefer not to say";
+// Sex at birth, gender, age group, academic rank, and employment status are
+// dropdowns with an "Other" choice that accepts free-text — so these are
+// plain strings rather than closed unions. See lib/respondentOptions.ts for
+// the preset option lists shown in the dropdowns.
+export type SexAtBirth = string;
+
+export type Gender = string;
+
+export type AgeGroup = string;
+
+export type AcademicRank = string;
+
+export type EmploymentStatus = string;
+
+export type YesNo = "Yes" | "No";
 
 export type ScoreBand = "Above Average" | "Average" | "Below Average";
 
 export interface RespondentInfo {
-  name: string;
-  employeeId?: string;
-  department: string;
+  collegeUnit: string;
+  campus: string;
+  ageGroup: AgeGroup;
+  sexAtBirth: SexAtBirth;
+  gender: Gender;
   employmentType: EmploymentType;
-  age: number;
-  sex: Sex;
+  academicRank?: AcademicRank;
+  employmentStatus: EmploymentStatus;
+  salaryGrade: number;
+  walkableSpaces: YesNo;
 }
 
 export type SF12RawResponses = Record<string, number>;
@@ -25,12 +43,16 @@ export interface SF12Submission {
 export interface SF12Response {
   id: string;
   timestamp: string;
-  name: string;
-  employeeId?: string;
-  department: string;
+  collegeUnit: string;
+  campus: string;
+  ageGroup: AgeGroup;
+  sexAtBirth: SexAtBirth;
+  gender: Gender;
   employmentType: EmploymentType;
-  age: number;
-  sex: string;
+  academicRank?: AcademicRank;
+  employmentStatus: EmploymentStatus;
+  salaryGrade: number;
+  walkableSpaces: YesNo;
   rawResponses: SF12RawResponses;
   pcs12: number;
   mcs12: number;

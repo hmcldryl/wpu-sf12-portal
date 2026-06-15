@@ -130,8 +130,8 @@ export function groupByField(
 }
 
 const CSV_HEADERS = [
-  "Timestamp", "Name", "Employee ID", "Department", "Employment Type",
-  "Age", "Sex",
+  "Timestamp", "College/Unit", "Campus/Station", "Age Group", "Sex at Birth", "Gender",
+  "Employment Type", "Academic Rank", "Employment Status", "Salary Grade", "Walkable Spaces Available",
   "Q1", "Q2", "Q3", "Q4", "Q5", "Q6", "Q7", "Q8", "Q9", "Q10", "Q11", "Q12",
   "PCS-12", "MCS-12", "PCS Band", "MCS Band",
 ];
@@ -150,12 +150,16 @@ export function formatForCSV(responses: SF12Response[]): string {
   for (const r of responses) {
     const row = [
       r.timestamp,
-      r.name,
-      r.employeeId || "",
-      r.department,
+      r.collegeUnit,
+      r.campus,
+      r.ageGroup,
+      r.sexAtBirth,
+      r.gender,
       r.employmentType,
-      r.age,
-      r.sex,
+      r.academicRank || "",
+      r.employmentStatus,
+      r.salaryGrade,
+      r.walkableSpaces,
       r.rawResponses.Q1, r.rawResponses.Q2, r.rawResponses.Q3, r.rawResponses.Q4,
       r.rawResponses.Q5, r.rawResponses.Q6, r.rawResponses.Q7, r.rawResponses.Q8,
       r.rawResponses.Q9, r.rawResponses.Q10, r.rawResponses.Q11, r.rawResponses.Q12,

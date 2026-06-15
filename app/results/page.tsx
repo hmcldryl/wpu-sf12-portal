@@ -86,8 +86,8 @@ export default function ResultsPage() {
 
       <main className="flex-1 max-w-2xl mx-auto px-4 py-8 w-full">
         <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6 sm:p-8 mb-6 text-center">
-          <h2 className="text-xl font-bold text-[#1a3a5c]">{respondent.name}</h2>
-          <p className="text-gray-500 text-sm">{respondent.department}</p>
+          <h2 className="text-xl font-bold text-[#1a3a5c]">{respondent.collegeUnit}</h2>
+          <p className="text-gray-500 text-sm">{respondent.campus}</p>
         </div>
 
         <div className="grid sm:grid-cols-2 gap-6 mb-6">

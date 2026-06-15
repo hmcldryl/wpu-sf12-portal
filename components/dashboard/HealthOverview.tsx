@@ -44,7 +44,6 @@ export default function HealthOverview({ responses }: HealthOverviewProps) {
   const scatterData = responses.map((r) => ({
     pcs: r.pcs12,
     mcs: r.mcs12,
-    name: r.name,
     category: categoryFor(r.pcs12, r.mcs12),
   }));
 
