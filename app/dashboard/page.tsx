@@ -4,6 +4,7 @@ import { SF12Response } from "@/lib/types";
 import { computeSummaryStats } from "@/lib/dashboardUtils";
 import StatCard from "@/components/dashboard/StatCard";
 import ScoreDistributionChart from "@/components/dashboard/ScoreDistributionChart";
+import HealthOverview from "@/components/dashboard/HealthOverview";
 import DepartmentBreakdown from "@/components/dashboard/DepartmentBreakdown";
 import ResponsesTable from "@/components/dashboard/ResponsesTable";
 import ExportButtons from "@/components/dashboard/ExportButtons";
@@ -79,6 +80,11 @@ export default async function DashboardPage() {
             value={String(stats.belowAverageCount)}
             detail={`${stats.belowAveragePct.toFixed(1)}% of total`}
           />
+        </section>
+
+        {/* Overall Wellbeing Overview */}
+        <section>
+          <HealthOverview responses={responses} />
         </section>
 
         {/* Section 2 — Score Distribution */}

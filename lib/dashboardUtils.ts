@@ -67,6 +67,44 @@ export function getScoreDistribution(
   };
 }
 
+export type HealthCategory =
+  | "Healthy"
+  | "Physical Concern"
+  | "Mental Concern"
+  | "Combined Concern";
+
+export function categorizeHealth(response: SF12Response): HealthCategory {
+  const pcsLow = response.pcs12 < 45;
+  const mcsLow = response.mcs12 < 45;
+
+  if (pcsLow && mcsLow) return "Combined Concern";
+  if (pcsLow) return "Physical Concern";
+  if (mcsLow) return "Mental Concern";
+  return "Healthy";
+}
+
+export function getHealthOverview(responses: SF12Response[]) {
+  const total = responses.length;
+  const counts: Record<HealthCategory, number> = {
+    Healthy: 0,
+    "Physical Concern": 0,
+    "Mental Concern": 0,
+    "Combined Concern": 0,
+  };
+
+  for (const r of responses) {
+    counts[categorizeHealth(r)]++;
+  }
+
+  const pct = (count: number) => (total === 0 ? 0 : (count / total) * 100);
+
+  return (Object.entries(counts) as [HealthCategory, number][]).map(([category, count]) => ({
+    category,
+    count,
+    pct: pct(count),
+  }));
+}
+
 export function groupByField(
   responses: SF12Response[],
   field: keyof SF12Response
