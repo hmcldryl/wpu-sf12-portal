@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function DashboardLoginPage() {
   const router = useRouter();
@@ -37,6 +38,9 @@ export default function DashboardLoginPage() {
   return (
     <div className="flex flex-col min-h-screen items-center justify-center bg-gray-50 px-4">
       <div className="w-full max-w-sm bg-white rounded-xl border border-gray-200 shadow-sm p-8">
+        <div className="flex justify-center mb-3">
+          <Image src="/wpu-logo.png" alt="Western Philippines University" width={56} height={56} />
+        </div>
         <h1 className="text-lg font-semibold text-[#1a3a5c] mb-1 text-center">
           WPU SF-12 Portal
         </h1>

@@ -2,8 +2,8 @@
 
 ## 1. Project Overview
 
-The **WPU SF-12 Portal** is a web app for the Western Philippines University (WPU)
-Faculty and Staff Conference. Respondents enter their personal details, answer the
+The **WPU SF-12 Portal** is a web app for the Western Philippines University (WPU).
+Respondents enter their personal details, answer the
 12-item SF-12 health questionnaire (v1.0), and immediately receive a scored health
 assessment — Physical Component Summary (PCS-12) and Mental Component Summary
 (MCS-12) — norm-based against the US general population (mean = 50, SD = 10).

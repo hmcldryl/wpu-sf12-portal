@@ -9,7 +9,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "WPU SF-12 Portal",
-  description: "Western Philippines University Faculty and Staff Conference — SF-12 Health Survey",
+  description: "Western Philippines University — SF-12 Health Survey",
 };
 
 export default function RootLayout({

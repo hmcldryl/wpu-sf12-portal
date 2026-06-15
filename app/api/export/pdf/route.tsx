@@ -47,7 +47,7 @@ function ReportDocument({ responses }: ReportProps) {
       <Page size="A4" style={styles.page}>
         <View style={styles.cover}>
           <Text style={styles.title}>WPU SF-12 Portal</Text>
-          <Text style={styles.subtitle}>Western Philippines University Faculty and Staff Conference</Text>
+          <Text style={styles.subtitle}>Western Philippines University</Text>
           <View style={styles.goldBar} />
           <Text style={styles.text}>Report generated: {formatDate()}</Text>
           <Text style={styles.text}>Total respondents: {stats.total}</Text>

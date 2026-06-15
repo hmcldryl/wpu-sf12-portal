@@ -1,16 +1,15 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
-      <header className="bg-[#1a3a5c] text-white py-6 px-4 text-center">
+      <header className="bg-[#1a3a5c] text-white py-6 px-4 text-center flex flex-col items-center">
+        <Image src="/wpu-logo.png" alt="Western Philippines University" width={64} height={64} className="mb-2" />
         <p className="text-sm font-medium text-[#c8a951] uppercase tracking-wide">
           Western Philippines University
         </p>
         <h1 className="text-2xl sm:text-3xl font-bold mt-1">WPU SF-12 Portal</h1>
-        <p className="text-sm mt-1 text-white/80">
-          Faculty and Staff Conference
-        </p>
       </header>
 
       <main className="flex-1 flex flex-col items-center justify-center px-4 py-12 text-center">

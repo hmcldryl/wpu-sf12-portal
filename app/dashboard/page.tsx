@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { getAdminDb } from "@/lib/firebaseAdmin";
 import { SF12Response } from "@/lib/types";
 import { computeSummaryStats } from "@/lib/dashboardUtils";
@@ -45,9 +46,12 @@ export default async function DashboardPage() {
     <div className="flex flex-col min-h-screen bg-gray-50">
       <header className="bg-[#1a3a5c] text-white">
         <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between gap-4 flex-wrap">
-          <div>
-            <p className="text-xs text-[#c8a951] uppercase tracking-wide">Western Philippines University</p>
-            <h1 className="text-lg font-semibold">WPU SF-12 Portal — Admin Dashboard</h1>
+          <div className="flex items-center gap-3">
+            <Image src="/wpu-logo.png" alt="Western Philippines University" width={36} height={36} />
+            <div>
+              <p className="text-xs text-[#c8a951] uppercase tracking-wide">Western Philippines University</p>
+              <h1 className="text-lg font-semibold">WPU SF-12 Portal — Admin Dashboard</h1>
+            </div>
           </div>
           <div className="flex items-center gap-4">
             <ExportButtons />
