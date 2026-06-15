@@ -8,6 +8,7 @@ import HealthOverview from "@/components/dashboard/HealthOverview";
 import DepartmentBreakdown from "@/components/dashboard/DepartmentBreakdown";
 import ResponsesTable from "@/components/dashboard/ResponsesTable";
 import ExportButtons from "@/components/dashboard/ExportButtons";
+import ResetDataButton from "@/components/dashboard/ResetDataButton";
 import LogoutButton from "@/components/dashboard/LogoutButton";
 
 export const dynamic = "force-dynamic";
@@ -60,6 +61,7 @@ export default async function DashboardPage() {
           </div>
           <div className="flex items-center gap-4">
             <ExportButtons />
+            <ResetDataButton />
             <LogoutButton />
           </div>
         </div>
