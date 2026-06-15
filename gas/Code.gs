@@ -1,0 +1,51 @@
+function doPost(e) {
+  try {
+    const data = JSON.parse(e.postData.contents);
+    const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+
+    // Write header row on first submission
+    if (sheet.getLastRow() === 0) {
+      sheet.appendRow([
+        'Timestamp', 'Name', 'Employee ID', 'Department', 'Employment Type',
+        'Age', 'Sex',
+        'Q1', 'Q2', 'Q3', 'Q4', 'Q5', 'Q6', 'Q7',
+        'Q8', 'Q9', 'Q10', 'Q11', 'Q12',
+        'PCS-12', 'MCS-12',
+        'PCS Interpretation', 'MCS Interpretation'
+      ]);
+    }
+
+    const r = data.rawResponses;
+
+    function interpret(score) {
+      if (score >= 55) return 'Above Average';
+      if (score >= 45) return 'Average';
+      return 'Below Average';
+    }
+
+    sheet.appendRow([
+      data.timestamp,
+      data.name,
+      data.employeeId || '',
+      data.department,
+      data.employmentType,
+      data.age,
+      data.sex,
+      r.Q1, r.Q2, r.Q3, r.Q4, r.Q5, r.Q6, r.Q7,
+      r.Q8, r.Q9, r.Q10, r.Q11, r.Q12,
+      data.pcs12,
+      data.mcs12,
+      interpret(data.pcs12),
+      interpret(data.mcs12)
+    ]);
+
+    return ContentService
+      .createTextOutput(JSON.stringify({ success: true }))
+      .setMimeType(ContentService.MimeType.JSON);
+
+  } catch (err) {
+    return ContentService
+      .createTextOutput(JSON.stringify({ success: false, error: err.toString() }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+}
