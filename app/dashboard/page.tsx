@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { version } from "@/package.json";
 import { getAdminDb } from "@/lib/firebaseAdmin";
 import { SF12Response } from "@/lib/types";
 import { computeSummaryStats } from "@/lib/dashboardUtils";
@@ -121,6 +122,10 @@ export default async function DashboardPage() {
           <ResponsesTable responses={responses} />
         </section>
       </main>
+
+      <footer className="border-t border-gray-200 py-3 px-4 text-center text-xs text-gray-400">
+        WPU SF-12 Portal v{version}
+      </footer>
     </div>
   );
 }
