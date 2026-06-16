@@ -6,6 +6,7 @@ import StatCard from "@/components/dashboard/StatCard";
 import ScoreDistributionChart from "@/components/dashboard/ScoreDistributionChart";
 import HealthOverview from "@/components/dashboard/HealthOverview";
 import DepartmentBreakdown from "@/components/dashboard/DepartmentBreakdown";
+import WalkableSpacesChart from "@/components/dashboard/WalkableSpacesChart";
 import ResponsesTable from "@/components/dashboard/ResponsesTable";
 import ExportButtons from "@/components/dashboard/ExportButtons";
 import ResetDataButton from "@/components/dashboard/ResetDataButton";
@@ -97,6 +98,11 @@ export default async function DashboardPage() {
         <section className="grid sm:grid-cols-2 gap-6">
           <ScoreDistributionChart responses={responses} field="pcs12" title="PCS-12 Distribution" />
           <ScoreDistributionChart responses={responses} field="mcs12" title="MCS-12 Distribution" />
+        </section>
+
+        {/* Walkable Spaces */}
+        <section>
+          <WalkableSpacesChart responses={responses} />
         </section>
 
         {/* Section 3 — Breakdown by Group */}
