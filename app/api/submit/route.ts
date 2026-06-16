@@ -17,6 +17,7 @@ export async function POST(request: NextRequest) {
     gender: respondentInfo.gender,
     employmentType: respondentInfo.employmentType,
     academicRank: respondentInfo.academicRank || "",
+    teachingLoad: respondentInfo.teachingLoad || "",
     employmentStatus: respondentInfo.employmentStatus,
     salaryGrade: respondentInfo.salaryGrade,
     walkableSpaces: respondentInfo.walkableSpaces,

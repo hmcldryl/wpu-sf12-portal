@@ -19,6 +19,7 @@ export async function GET() {
         gender: data.gender,
         employmentType: data.employmentType,
         academicRank: data.academicRank || "",
+        teachingLoad: data.teachingLoad || "",
         employmentStatus: data.employmentStatus,
         salaryGrade: data.salaryGrade,
         walkableSpaces: data.walkableSpaces,

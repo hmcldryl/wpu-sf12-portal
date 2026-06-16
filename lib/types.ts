@@ -12,6 +12,8 @@ export type AgeGroup = string;
 
 export type AcademicRank = string;
 
+export type TeachingLoad = string;
+
 export type EmploymentStatus = string;
 
 export type YesNo = "Yes" | "No";
@@ -26,6 +28,7 @@ export interface RespondentInfo {
   gender: Gender;
   employmentType: EmploymentType;
   academicRank?: AcademicRank;
+  teachingLoad?: TeachingLoad;
   employmentStatus: EmploymentStatus;
   salaryGrade: number;
   walkableSpaces: YesNo;
@@ -50,6 +53,7 @@ export interface SF12Response {
   gender: Gender;
   employmentType: EmploymentType;
   academicRank?: AcademicRank;
+  teachingLoad?: TeachingLoad;
   employmentStatus: EmploymentStatus;
   salaryGrade: number;
   walkableSpaces: YesNo;

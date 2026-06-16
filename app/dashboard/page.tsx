@@ -8,6 +8,7 @@ import ScoreDistributionChart from "@/components/dashboard/ScoreDistributionChar
 import HealthOverview from "@/components/dashboard/HealthOverview";
 import DepartmentBreakdown from "@/components/dashboard/DepartmentBreakdown";
 import WalkableSpacesChart from "@/components/dashboard/WalkableSpacesChart";
+import TeachingLoadChart from "@/components/dashboard/TeachingLoadChart";
 import ResponsesTable from "@/components/dashboard/ResponsesTable";
 import ExportButtons from "@/components/dashboard/ExportButtons";
 import ResetDataButton from "@/components/dashboard/ResetDataButton";
@@ -32,6 +33,7 @@ async function getResponses(): Promise<SF12Response[]> {
         gender: data.gender,
         employmentType: data.employmentType,
         academicRank: data.academicRank || "",
+        teachingLoad: data.teachingLoad || "",
         employmentStatus: data.employmentStatus,
         salaryGrade: data.salaryGrade,
         walkableSpaces: data.walkableSpaces,
@@ -104,6 +106,11 @@ export default async function DashboardPage() {
         {/* Walkable Spaces */}
         <section>
           <WalkableSpacesChart responses={responses} />
+        </section>
+
+        {/* Teaching Load (Faculty) */}
+        <section>
+          <TeachingLoadChart responses={responses} />
         </section>
 
         {/* Section 3 — Breakdown by Group */}

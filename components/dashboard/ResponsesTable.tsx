@@ -17,6 +17,7 @@ type SortKey =
   | "gender"
   | "employmentType"
   | "academicRank"
+  | "teachingLoad"
   | "employmentStatus"
   | "salaryGrade"
   | "walkableSpaces"
@@ -96,6 +97,7 @@ export default function ResponsesTable({ responses }: ResponsesTableProps) {
     { key: "gender", label: "Gender" },
     { key: "employmentType", label: "Type" },
     { key: "academicRank", label: "Academic Rank" },
+    { key: "teachingLoad", label: "Teaching Load" },
     { key: "employmentStatus", label: "Employment Status" },
     { key: "salaryGrade", label: "Salary Grade" },
     { key: "walkableSpaces", label: "Walkable Spaces" },
@@ -201,6 +203,7 @@ export default function ResponsesTable({ responses }: ResponsesTableProps) {
                     <td className="py-2 pr-4">{r.gender}</td>
                     <td className="py-2 pr-4">{r.employmentType}</td>
                     <td className="py-2 pr-4">{r.academicRank || "—"}</td>
+                    <td className="py-2 pr-4">{r.teachingLoad || "—"}</td>
                     <td className="py-2 pr-4">{r.employmentStatus}</td>
                     <td className="py-2 pr-4">{r.salaryGrade}</td>
                     <td className="py-2 pr-4">{r.walkableSpaces}</td>

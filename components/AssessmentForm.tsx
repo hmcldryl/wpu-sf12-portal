@@ -16,6 +16,7 @@ import {
   EMPLOYMENT_STATUS_OPTIONS,
   GENDER_OPTIONS,
   SEX_AT_BIRTH_OPTIONS,
+  TEACHING_LOAD_OPTIONS,
 } from "@/lib/respondentOptions";
 
 const TOTAL_STEPS = SF12_STEPS.length + 2; // respondent info + questions + review
@@ -28,6 +29,7 @@ const EMPTY_RESPONDENT: RespondentInfo = {
   gender: "",
   employmentType: "Faculty",
   academicRank: undefined,
+  teachingLoad: undefined,
   employmentStatus: "",
   salaryGrade: 0,
   walkableSpaces: "Yes",
@@ -54,6 +56,7 @@ export default function AssessmentForm() {
       if (!respondent.gender.trim()) return false;
       if (!respondent.employmentType) return false;
       if (respondent.employmentType === "Faculty" && !respondent.academicRank?.trim()) return false;
+      if (respondent.employmentType === "Faculty" && !respondent.teachingLoad?.trim()) return false;
       if (!respondent.employmentStatus.trim()) return false;
       if (!respondent.salaryGrade || respondent.salaryGrade <= 0) return false;
       if (!respondent.walkableSpaces) return false;
@@ -189,6 +192,7 @@ export default function AssessmentForm() {
                     ...respondent,
                     employmentType,
                     academicRank: employmentType === "Faculty" ? respondent.academicRank : undefined,
+                    teachingLoad: employmentType === "Faculty" ? respondent.teachingLoad : undefined,
                   });
                 }}
                 className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a3a5c]"
@@ -206,6 +210,17 @@ export default function AssessmentForm() {
                 options={ACADEMIC_RANK_OPTIONS}
                 onChange={(v) => setRespondent({ ...respondent, academicRank: v })}
                 otherPlaceholder="Please specify your academic rank"
+              />
+            )}
+
+            {respondent.employmentType === "Faculty" && (
+              <SelectWithOther
+                label="Teaching Load (Previous Semester)"
+                required
+                value={respondent.teachingLoad ?? ""}
+                options={TEACHING_LOAD_OPTIONS}
+                onChange={(v) => setRespondent({ ...respondent, teachingLoad: v })}
+                otherPlaceholder="Please specify your teaching load"
               />
             )}
 
@@ -293,6 +308,12 @@ export default function AssessmentForm() {
               <div className="flex justify-between border-b border-gray-100 py-1">
                 <dt>Academic Rank</dt>
                 <dd>{respondent.academicRank}</dd>
+              </div>
+            )}
+            {respondent.teachingLoad && (
+              <div className="flex justify-between border-b border-gray-100 py-1">
+                <dt>Teaching Load (Previous Semester)</dt>
+                <dd>{respondent.teachingLoad}</dd>
               </div>
             )}
             <div className="flex justify-between border-b border-gray-100 py-1">
