@@ -25,13 +25,15 @@ runs automatically in non-production builds.
 
 ### Scoring (`lib/sf12Scoring.ts`)
 `SF12_LOOKUP` maps each question (Q1–Q12) and raw response value to
-`[physicalValue, mentalValue]` pairs from the SF-12 v1.0 norm-based scoring
-algorithm. `computeSF12Scores(responses)` sums these and adds `PCS_CONSTANT`
-(56.57706) / `MCS_CONSTANT` (60.75781). **Do not change these constants or
-lookup values** — they're verified against orthotoolkit.com/sf-12/ and cited
-in `README.md`. Note: the "best health" response value that maps to `[0, 0]`
-differs per question (e.g. Q1 → 1, Q2 → 3, Q9 → 5) — the self-test computes
-this per-question rather than assuming all-1s.
+`[physicalDelta, mentalDelta]` pairs. Coefficients are verified against
+orthotoolkit.com/sf-12/ and sourced from Ware et al. (1996),
+doi:10.1097/00005650-199603000-00003. `computeSF12Scores(responses)` sums
+these and adds `PCS_CONSTANT` (56.57706) / `MCS_CONSTANT` (60.75781).
+**Do not change these constants or lookup values.**
+Q9–Q11 use 6 response options (1=All … 6=None, includes "A Good Bit of the
+time" as value 3). Q12 uses 5 options. The best-health anchor ([0, 0]) differs
+per question — e.g. Q1→1, Q2→3, Q9→1, Q11→6, Q12→5 — the self-test finds
+this dynamically.
 
 ### Respondent info (`lib/types.ts`, `lib/respondentOptions.ts`)
 `RespondentInfo`/`SF12Response` hold no PII (no name/employee ID) — fields are

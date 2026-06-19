@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { version } from "@/package.json";
 import { getAdminDb } from "@/lib/firebaseAdmin";
 import { SF12Response } from "@/lib/types";
@@ -10,6 +11,7 @@ import DepartmentBreakdown from "@/components/dashboard/DepartmentBreakdown";
 import WalkableSpacesChart from "@/components/dashboard/WalkableSpacesChart";
 import TeachingLoadChart from "@/components/dashboard/TeachingLoadChart";
 import ResponsesTable from "@/components/dashboard/ResponsesTable";
+import ScoringGuide from "@/components/dashboard/ScoringGuide";
 import ExportButtons from "@/components/dashboard/ExportButtons";
 import ResetDataButton from "@/components/dashboard/ResetDataButton";
 import LogoutButton from "@/components/dashboard/LogoutButton";
@@ -65,6 +67,12 @@ export default async function DashboardPage() {
           </div>
           <div className="flex items-center gap-4">
             <ExportButtons />
+            <Link
+              href="/dashboard/config"
+              className="text-sm text-[#c8a951] hover:text-white transition-colors whitespace-nowrap"
+            >
+              Scoring Config
+            </Link>
             <ResetDataButton />
             <LogoutButton />
           </div>
@@ -122,6 +130,11 @@ export default async function DashboardPage() {
           <DepartmentBreakdown responses={responses} field="employmentStatus" title="Employment Status" />
           <DepartmentBreakdown responses={responses} field="sexAtBirth" title="Sex at Birth" />
           <DepartmentBreakdown responses={responses} field="gender" title="Gender" />
+        </section>
+
+        {/* Scoring Methodology */}
+        <section>
+          <ScoringGuide />
         </section>
 
         {/* Section 4 — Individual Responses */}

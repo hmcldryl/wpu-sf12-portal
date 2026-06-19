@@ -15,6 +15,16 @@ export interface QuestionStep {
   questions: QuestionDef[];
 }
 
+// Q9-Q11 use 6 options; Q12 uses 5 (no "A Good Bit" option)
+const FREQUENCY_6_OPTIONS: QuestionOption[] = [
+  { value: 1, label: "All of the time" },
+  { value: 2, label: "Most of the time" },
+  { value: 3, label: "A Good Bit of the time" },
+  { value: 4, label: "Some of the time" },
+  { value: 5, label: "A little of the time" },
+  { value: 6, label: "None of the time" },
+];
+
 const FREQUENCY_OPTIONS: QuestionOption[] = [
   { value: 1, label: "All of the time" },
   { value: 2, label: "Most of the time" },
@@ -134,7 +144,7 @@ export const SF12_STEPS: QuestionStep[] = [
       {
         id: "Q9",
         text: "How much of the time during the past 4 weeks have you felt calm and peaceful?",
-        options: FREQUENCY_OPTIONS,
+        options: FREQUENCY_6_OPTIONS,
       },
     ],
   },
@@ -145,7 +155,7 @@ export const SF12_STEPS: QuestionStep[] = [
       {
         id: "Q10",
         text: "How much of the time during the past 4 weeks did you have a lot of energy?",
-        options: FREQUENCY_OPTIONS,
+        options: FREQUENCY_6_OPTIONS,
       },
     ],
   },
@@ -156,7 +166,7 @@ export const SF12_STEPS: QuestionStep[] = [
       {
         id: "Q11",
         text: "How much of the time during the past 4 weeks have you felt downhearted and blue?",
-        options: FREQUENCY_OPTIONS,
+        options: FREQUENCY_6_OPTIONS,
       },
     ],
   },

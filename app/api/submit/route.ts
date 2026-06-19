@@ -1,10 +1,28 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getAdminDb } from "@/lib/firebaseAdmin";
 import { SF12Submission } from "@/lib/types";
+import { computeWithWeights, DEFAULT_WEIGHTS, SF12Weights } from "@/lib/sf12Scoring";
+
+async function getConfigWeights(): Promise<SF12Weights> {
+  try {
+    const db = getAdminDb();
+    const doc = await db.collection("sf12_config").doc("weights").get();
+    if (doc.exists) {
+      const raw = doc.data()?.weightsJson;
+      if (raw) return JSON.parse(raw);
+    }
+  } catch {
+    // fall through
+  }
+  return DEFAULT_WEIGHTS;
+}
 
 export async function POST(request: NextRequest) {
   const body: SF12Submission = await request.json();
-  const { respondentInfo, rawResponses, pcs12, mcs12 } = body;
+  const { respondentInfo, rawResponses } = body;
+
+  const weights = await getConfigWeights();
+  const { pcs12, mcs12 } = computeWithWeights(rawResponses, weights);
 
   const timestamp = new Date().toISOString();
 
