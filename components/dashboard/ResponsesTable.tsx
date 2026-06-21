@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { Fragment, useMemo, useState } from "react";
 import { getScoreBand } from "@/lib/dashboardUtils";
@@ -85,7 +85,7 @@ export default function ResponsesTable({ responses }: ResponsesTableProps) {
 
   function sortIndicator(key: SortKey) {
     if (sortKey !== key) return "";
-    return sortDir === "asc" ? " ▲" : " ▼";
+    return sortDir === "asc" ? " â–²" : " â–¼";
   }
 
   const columns: { key: SortKey; label: string }[] = [
@@ -107,7 +107,7 @@ export default function ResponsesTable({ responses }: ResponsesTableProps) {
 
   return (
     <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-4 sm:p-6">
-      <h3 className="font-semibold text-[#1a3a5c] mb-4">Individual Responses</h3>
+      <h3 className="font-semibold text-[#0927eb] mb-4">Individual Responses</h3>
 
       <div className="flex flex-wrap gap-2 mb-4">
         <input
@@ -118,7 +118,7 @@ export default function ResponsesTable({ responses }: ResponsesTableProps) {
             setSearch(e.target.value);
             setPage(1);
           }}
-          className="flex-1 min-w-[200px] border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a3a5c]"
+          className="flex-1 min-w-[200px] border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0927eb]"
         />
         <select
           value={employmentFilter}
@@ -202,8 +202,8 @@ export default function ResponsesTable({ responses }: ResponsesTableProps) {
                     <td className="py-2 pr-4">{r.sexAtBirth}</td>
                     <td className="py-2 pr-4">{r.gender}</td>
                     <td className="py-2 pr-4">{r.employmentType}</td>
-                    <td className="py-2 pr-4">{r.academicRank || "—"}</td>
-                    <td className="py-2 pr-4">{r.teachingLoad || "—"}</td>
+                    <td className="py-2 pr-4">{r.academicRank || "â€”"}</td>
+                    <td className="py-2 pr-4">{r.teachingLoad || "â€”"}</td>
                     <td className="py-2 pr-4">{r.employmentStatus}</td>
                     <td className="py-2 pr-4">{r.salaryGrade}</td>
                     <td className="py-2 pr-4">{r.walkableSpaces}</td>

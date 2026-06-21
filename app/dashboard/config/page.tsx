@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
@@ -79,20 +79,20 @@ export default function ConfigPage() {
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
-      <header className="bg-[#1a3a5c] text-white">
+      <header className="bg-[#0927eb] text-white">
         <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between gap-4 flex-wrap">
           <div className="flex items-center gap-3">
             <Image src="/wpu-logo.png" alt="Western Philippines University" width={36} height={36} />
             <div>
-              <p className="text-xs text-[#c8a951] uppercase tracking-wide">Western Philippines University</p>
-              <h1 className="text-lg font-semibold">SF-12 Scoring Weights — Configuration</h1>
+              <p className="text-xs text-[#fff504] uppercase tracking-wide">Western Philippines University</p>
+              <h1 className="text-lg font-semibold">SF-12 Scoring Weights â€” Configuration</h1>
             </div>
           </div>
           <Link
             href="/dashboard"
-            className="text-sm text-[#c8a951] hover:text-white transition-colors"
+            className="text-sm text-[#fff504] hover:text-white transition-colors"
           >
-            ← Back to Dashboard
+            â† Back to Dashboard
           </Link>
         </div>
       </header>
@@ -100,7 +100,7 @@ export default function ConfigPage() {
       <main className="flex-1 max-w-4xl mx-auto w-full px-4 py-8 space-y-6">
         {/* Info card */}
         <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-5">
-          <h2 className="text-sm font-semibold text-[#1a3a5c] mb-1">About these weights</h2>
+          <h2 className="text-sm font-semibold text-[#0927eb] mb-1">About these weights</h2>
           <p className="text-sm text-gray-600">
             Each question/answer pair maps to a physical delta and mental delta used to compute
             PCS-12 and MCS-12. The defaults are from the SF-12 v1.0 norm-based scoring algorithm.
@@ -111,16 +111,16 @@ export default function ConfigPage() {
               href="https://doi.org/10.1097/00005650-199603000-00003"
               target="_blank"
               rel="noopener noreferrer"
-              className="underline hover:text-[#1a3a5c]"
+              className="underline hover:text-[#0927eb]"
             >
               Ware et al. (1996). A 12-Item Short-Form Health Survey. <em>Medical Care</em> 34(3).
               doi:10.1097/00005650-199603000-00003
             </a>
           </p>
           <p className="text-xs text-gray-400 mt-1">
-            Formula: <span className="font-mono">PCS-12 = Σ(physicalΔ) + 56.57706</span>
-            {" · "}
-            <span className="font-mono">MCS-12 = Σ(mentalΔ) + 60.75781</span>
+            Formula: <span className="font-mono">PCS-12 = Î£(physicalÎ”) + 56.57706</span>
+            {" Â· "}
+            <span className="font-mono">MCS-12 = Î£(mentalÎ”) + 60.75781</span>
           </p>
         </div>
 
@@ -129,9 +129,9 @@ export default function ConfigPage() {
           <button
             onClick={handleSave}
             disabled={status === "saving"}
-            className="px-4 py-2 bg-[#1a3a5c] text-white text-sm rounded-lg hover:bg-[#0f2a45] disabled:opacity-50 transition-colors"
+            className="px-4 py-2 bg-[#0927eb] text-white text-sm rounded-lg hover:bg-[#0f2a45] disabled:opacity-50 transition-colors"
           >
-            {status === "saving" ? "Saving…" : "Save Changes"}
+            {status === "saving" ? "Savingâ€¦" : "Save Changes"}
           </button>
           <button
             onClick={handleReset}
@@ -158,10 +158,10 @@ export default function ConfigPage() {
                 onClick={() => setOpenQ(isOpen ? null : q)}
                 className="w-full flex items-center justify-between px-5 py-3 text-left hover:bg-gray-50 transition-colors"
               >
-                <span className="text-sm font-semibold text-[#1a3a5c]">
-                  {q} — {qDef.text}
+                <span className="text-sm font-semibold text-[#0927eb]">
+                  {q} â€” {qDef.text}
                 </span>
-                <span className="text-gray-400 select-none">{isOpen ? "▲" : "▼"}</span>
+                <span className="text-gray-400 select-none">{isOpen ? "â–²" : "â–¼"}</span>
               </button>
 
               {isOpen && (
@@ -172,11 +172,11 @@ export default function ConfigPage() {
                         <th className="text-left px-4 py-2 border-b border-gray-200 text-gray-500 font-medium w-1/2">
                           Answer
                         </th>
-                        <th className="text-center px-4 py-2 border-b border-gray-200 text-[#1a3a5c] font-medium">
-                          Physical Δ
+                        <th className="text-center px-4 py-2 border-b border-gray-200 text-[#0927eb] font-medium">
+                          Physical Î”
                         </th>
-                        <th className="text-center px-4 py-2 border-b border-gray-200 text-[#c8a951] font-medium">
-                          Mental Δ
+                        <th className="text-center px-4 py-2 border-b border-gray-200 text-[#fff504] font-medium">
+                          Mental Î”
                         </th>
                       </tr>
                     </thead>
@@ -201,7 +201,7 @@ export default function ConfigPage() {
                                 step="any"
                                 value={pVal}
                                 onChange={(e) => setVal(q, k, 0, e.target.value)}
-                                className="w-full font-mono text-xs text-center border border-gray-200 rounded px-2 py-1 focus:outline-none focus:border-[#1a3a5c] text-[#1a3a5c]"
+                                className="w-full font-mono text-xs text-center border border-gray-200 rounded px-2 py-1 focus:outline-none focus:border-[#0927eb] text-[#0927eb]"
                               />
                             </td>
                             <td className="px-4 py-2 border-b border-gray-100">
@@ -210,7 +210,7 @@ export default function ConfigPage() {
                                 step="any"
                                 value={mVal}
                                 onChange={(e) => setVal(q, k, 1, e.target.value)}
-                                className="w-full font-mono text-xs text-center border border-gray-200 rounded px-2 py-1 focus:outline-none focus:border-[#c8a951] text-[#c8a951]"
+                                className="w-full font-mono text-xs text-center border border-gray-200 rounded px-2 py-1 focus:outline-none focus:border-[#fff504] text-[#fff504]"
                               />
                             </td>
                           </tr>

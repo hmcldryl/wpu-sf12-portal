@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 
@@ -62,7 +62,7 @@ export default function ScoreGauge({ score, label }: ScoreGaugeProps) {
       </svg>
 
       <div className="text-center -mt-6">
-        <p className="text-3xl font-bold text-[#1a3a5c]">{score.toFixed(2)}</p>
+        <p className="text-3xl font-bold text-[#0927eb]">{score.toFixed(2)}</p>
         <p className="text-sm text-gray-500">{label}</p>
       </div>
     </div>

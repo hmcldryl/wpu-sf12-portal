@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+﻿import { NextResponse } from "next/server";
 import { renderToBuffer } from "@react-pdf/renderer";
 import { Document, Page, Text, View, StyleSheet } from "@react-pdf/renderer";
 import { getAdminDb } from "@/lib/firebaseAdmin";
@@ -7,17 +7,17 @@ import { computeSummaryStats, getScoreDistribution, groupByField } from "@/lib/d
 
 const styles = StyleSheet.create({
   page: { padding: 40, fontSize: 11, fontFamily: "Helvetica", color: "#1a1a1a" },
-  title: { fontSize: 22, fontWeight: "bold", color: "#1a3a5c", marginBottom: 8 },
+  title: { fontSize: 22, fontWeight: "bold", color: "#0927eb", marginBottom: 8 },
   subtitle: { fontSize: 13, color: "#444", marginBottom: 4 },
-  sectionTitle: { fontSize: 16, fontWeight: "bold", color: "#1a3a5c", marginBottom: 12 },
+  sectionTitle: { fontSize: 16, fontWeight: "bold", color: "#0927eb", marginBottom: 12 },
   text: { marginBottom: 6, lineHeight: 1.5 },
   table: { display: "flex", flexDirection: "column", marginTop: 8, marginBottom: 16 },
   tableRow: { flexDirection: "row", borderBottom: "1 solid #e5e7eb", paddingVertical: 4 },
-  tableHeaderRow: { flexDirection: "row", borderBottom: "2 solid #1a3a5c", paddingVertical: 4 },
+  tableHeaderRow: { flexDirection: "row", borderBottom: "2 solid #0927eb", paddingVertical: 4 },
   cell: { flex: 1, fontSize: 10 },
-  cellHeader: { flex: 1, fontSize: 10, fontWeight: "bold", color: "#1a3a5c" },
+  cellHeader: { flex: 1, fontSize: 10, fontWeight: "bold", color: "#0927eb" },
   cover: { flex: 1, justifyContent: "center", alignItems: "center", textAlign: "center" },
-  goldBar: { width: 80, height: 4, backgroundColor: "#c8a951", marginVertical: 16 },
+  goldBar: { width: 80, height: 4, backgroundColor: "#fff504", marginVertical: 16 },
   footerText: { fontSize: 9, color: "#666", marginTop: 4, lineHeight: 1.5 },
 });
 
@@ -43,7 +43,7 @@ function ReportDocument({ responses }: ReportProps) {
 
   return (
     <Document>
-      {/* Page 1 — Cover */}
+      {/* Page 1 â€” Cover */}
       <Page size="A4" style={styles.page}>
         <View style={styles.cover}>
           <Text style={styles.title}>WPU SF-12 Portal</Text>
@@ -54,11 +54,11 @@ function ReportDocument({ responses }: ReportProps) {
         </View>
       </Page>
 
-      {/* Page 2 — Executive Summary */}
+      {/* Page 2 â€” Executive Summary */}
       <Page size="A4" style={styles.page}>
         <Text style={styles.sectionTitle}>Executive Summary</Text>
-        <Text style={styles.text}>Average PCS-12: {stats.avgPCS.toFixed(2)} (±{stats.sdPCS.toFixed(2)})</Text>
-        <Text style={styles.text}>Average MCS-12: {stats.avgMCS.toFixed(2)} (±{stats.sdMCS.toFixed(2)})</Text>
+        <Text style={styles.text}>Average PCS-12: {stats.avgPCS.toFixed(2)} (Â±{stats.sdPCS.toFixed(2)})</Text>
+        <Text style={styles.text}>Average MCS-12: {stats.avgMCS.toFixed(2)} (Â±{stats.sdMCS.toFixed(2)})</Text>
         <Text style={styles.text}>
           Respondents below average on PCS: {belowPCS} ({((belowPCS / total) * 100).toFixed(1)}%)
         </Text>
@@ -70,7 +70,7 @@ function ReportDocument({ responses }: ReportProps) {
         </Text>
       </Page>
 
-      {/* Page 3 — Score Distribution */}
+      {/* Page 3 â€” Score Distribution */}
       <Page size="A4" style={styles.page}>
         <Text style={styles.sectionTitle}>Score Distribution</Text>
 
@@ -123,7 +123,7 @@ function ReportDocument({ responses }: ReportProps) {
         </View>
       </Page>
 
-      {/* Page 4 — Breakdown by Group */}
+      {/* Page 4 â€” Breakdown by Group */}
       <Page size="A4" style={styles.page}>
         <Text style={styles.sectionTitle}>Breakdown by Group</Text>
 
@@ -182,7 +182,7 @@ function ReportDocument({ responses }: ReportProps) {
         </View>
       </Page>
 
-      {/* Page 5 — Citation & Disclaimer */}
+      {/* Page 5 â€” Citation & Disclaimer */}
       <Page size="A4" style={styles.page}>
         <Text style={styles.sectionTitle}>Citation &amp; Disclaimer</Text>
         <Text style={styles.text}>
@@ -194,14 +194,14 @@ function ReportDocument({ responses }: ReportProps) {
         <Text style={styles.footerText}>
           Ware, J. E., Kosinski, M., &amp; Keller, S. D. (1996). A 12-Item Short-Form Health Survey:
           Construction of scales and preliminary tests of reliability and validity. Medical Care,
-          34(3), 220–233. https://doi.org/10.1097/00005650-199603000-00003
+          34(3), 220â€“233. https://doi.org/10.1097/00005650-199603000-00003
         </Text>
         <Text style={styles.footerText}>
           Gandek, B., Ware, J. E., Aaronson, N. K., Apolone, G., Bjorner, J. B., Brazier, J. E.,
           Bullinger, M., Kaasa, S., Leplege, A., Prieto, L., &amp; Sullivan, M. (1998).
           Cross-validation of item selection and scoring for the SF-12 Health Survey in nine
           countries: Results from the IQOLA Project. Journal of Clinical Epidemiology, 51(11),
-          1171–1178. https://doi.org/10.1016/S0895-4356(98)00109-7
+          1171â€“1178. https://doi.org/10.1016/S0895-4356(98)00109-7
         </Text>
         <Text style={styles.footerText}>
           OrthoToolKit. (n.d.). Free online SF-12 score calculator. https://orthotoolkit.com/sf-12/

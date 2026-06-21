@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { Bar, BarChart, CartesianGrid, Cell, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { getScoreDistribution } from "@/lib/dashboardUtils";
@@ -27,7 +27,7 @@ export default function ScoreDistributionChart({ responses, field, title }: Scor
 
   return (
     <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-4 sm:p-6">
-      <h3 className="font-semibold text-[#1a3a5c] mb-4">{title}</h3>
+      <h3 className="font-semibold text-[#0927eb] mb-4">{title}</h3>
       <ResponsiveContainer width="100%" height={220}>
         <BarChart data={data}>
           <CartesianGrid strokeDasharray="3 3" vertical={false} />

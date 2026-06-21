@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import {
   CartesianGrid,
@@ -58,7 +58,7 @@ export default function HealthOverview({ responses }: HealthOverviewProps) {
 
   return (
     <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-4 sm:p-6">
-      <h3 className="font-semibold text-[#1a3a5c] mb-1">Overall Wellbeing Overview</h3>
+      <h3 className="font-semibold text-[#0927eb] mb-1">Overall Wellbeing Overview</h3>
       <p className="text-sm text-gray-600 mb-4">
         {total === 0
           ? "No responses yet."
@@ -127,7 +127,7 @@ export default function HealthOverview({ responses }: HealthOverviewProps) {
                 formatter={(value) => Number(value).toFixed(2)}
                 labelFormatter={() => ""}
               />
-              <Scatter data={scatterData} fill="#1a3a5c">
+              <Scatter data={scatterData} fill="#0927eb">
                 {scatterData.map((entry, idx) => (
                   <Cell key={idx} fill={CATEGORY_COLORS[entry.category]} />
                 ))}

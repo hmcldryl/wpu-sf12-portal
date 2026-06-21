@@ -1,4 +1,4 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 import Link from "next/link";
 import { version } from "@/package.json";
 import { getAdminDb } from "@/lib/firebaseAdmin";
@@ -56,20 +56,20 @@ export default async function DashboardPage() {
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
-      <header className="bg-[#1a3a5c] text-white">
+      <header className="bg-[#0927eb] text-white">
         <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between gap-4 flex-wrap">
           <div className="flex items-center gap-3">
             <Image src="/wpu-logo.png" alt="Western Philippines University" width={36} height={36} />
             <div>
-              <p className="text-xs text-[#c8a951] uppercase tracking-wide">Western Philippines University</p>
-              <h1 className="text-lg font-semibold">WPU SF-12 Portal — Admin Dashboard</h1>
+              <p className="text-xs text-[#fff504] uppercase tracking-wide">Western Philippines University</p>
+              <h1 className="text-lg font-semibold">WPU SF-12 Portal â€” Admin Dashboard</h1>
             </div>
           </div>
           <div className="flex items-center gap-4">
             <ExportButtons />
             <Link
               href="/dashboard/config"
-              className="text-sm text-[#c8a951] hover:text-white transition-colors whitespace-nowrap"
+              className="text-sm text-[#fff504] hover:text-white transition-colors whitespace-nowrap"
             >
               Scoring Config
             </Link>
@@ -80,18 +80,18 @@ export default async function DashboardPage() {
       </header>
 
       <main className="flex-1 max-w-6xl mx-auto w-full px-4 py-8 space-y-8">
-        {/* Section 1 — KPI Cards */}
+        {/* Section 1 â€” KPI Cards */}
         <section className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           <StatCard label="Total Responses" value={String(stats.total)} />
           <StatCard
             label="Avg PCS-12"
             value={stats.avgPCS.toFixed(2)}
-            detail={`±${stats.sdPCS.toFixed(2)} SD`}
+            detail={`Â±${stats.sdPCS.toFixed(2)} SD`}
           />
           <StatCard
             label="Avg MCS-12"
             value={stats.avgMCS.toFixed(2)}
-            detail={`±${stats.sdMCS.toFixed(2)} SD`}
+            detail={`Â±${stats.sdMCS.toFixed(2)} SD`}
           />
           <StatCard
             label="Below Average (either)"
@@ -105,7 +105,7 @@ export default async function DashboardPage() {
           <HealthOverview responses={responses} />
         </section>
 
-        {/* Section 2 — Score Distribution */}
+        {/* Section 2 â€” Score Distribution */}
         <section className="grid sm:grid-cols-2 gap-6">
           <ScoreDistributionChart responses={responses} field="pcs12" title="PCS-12 Distribution" />
           <ScoreDistributionChart responses={responses} field="mcs12" title="MCS-12 Distribution" />
@@ -121,7 +121,7 @@ export default async function DashboardPage() {
           <TeachingLoadChart responses={responses} />
         </section>
 
-        {/* Section 3 — Breakdown by Group */}
+        {/* Section 3 â€” Breakdown by Group */}
         <section className="space-y-6">
           <DepartmentBreakdown responses={responses} field="collegeUnit" title="College / Unit" />
           <DepartmentBreakdown responses={responses} field="campus" title="Campus / Station" />
@@ -137,7 +137,7 @@ export default async function DashboardPage() {
           <ScoringGuide />
         </section>
 
-        {/* Section 4 — Individual Responses */}
+        {/* Section 4 â€” Individual Responses */}
         <section>
           <ResponsesTable responses={responses} />
         </section>

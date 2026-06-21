@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 
@@ -139,12 +139,12 @@ export default function ScoringGuide() {
         className="w-full flex items-center justify-between px-6 py-4 text-left hover:bg-gray-50 transition-colors"
       >
         <div>
-          <h2 className="text-base font-semibold text-[#1a3a5c]">SF-12 Scoring Methodology</h2>
+          <h2 className="text-base font-semibold text-[#0927eb]">SF-12 Scoring Methodology</h2>
           <p className="text-xs text-gray-500 mt-0.5">
             Lookup table values, formulas, and score band definitions
           </p>
         </div>
-        <span className="text-gray-400 text-lg select-none">{open ? "▲" : "▼"}</span>
+        <span className="text-gray-400 text-lg select-none">{open ? "â–²" : "â–¼"}</span>
       </button>
 
       {open && (
@@ -152,18 +152,18 @@ export default function ScoringGuide() {
           {/* Overview */}
           <div className="pt-6 grid sm:grid-cols-2 gap-4">
             <div className="bg-blue-50 rounded-lg p-4 border border-blue-100">
-              <p className="text-xs font-semibold text-[#1a3a5c] uppercase tracking-wide mb-1">PCS-12</p>
-              <p className="text-sm text-gray-700">Physical Component Summary — measures physical health functioning.</p>
+              <p className="text-xs font-semibold text-[#0927eb] uppercase tracking-wide mb-1">PCS-12</p>
+              <p className="text-sm text-gray-700">Physical Component Summary â€” measures physical health functioning.</p>
             </div>
             <div className="bg-amber-50 rounded-lg p-4 border border-amber-100">
-              <p className="text-xs font-semibold text-[#c8a951] uppercase tracking-wide mb-1">MCS-12</p>
-              <p className="text-sm text-gray-700">Mental Component Summary — measures mental health functioning.</p>
+              <p className="text-xs font-semibold text-[#fff504] uppercase tracking-wide mb-1">MCS-12</p>
+              <p className="text-sm text-gray-700">Mental Component Summary â€” measures mental health functioning.</p>
             </div>
           </div>
 
           {/* Formulas */}
           <div>
-            <h3 className="text-sm font-semibold text-[#1a3a5c] mb-3">Formulas</h3>
+            <h3 className="text-sm font-semibold text-[#0927eb] mb-3">Formulas</h3>
             <p className="text-sm text-gray-600 mb-3">
               Each question maps the respondent&apos;s answer to a physical delta and mental delta via the
               lookup table below. The 12 physical deltas are summed and a constant is added to produce PCS-12;
@@ -171,25 +171,25 @@ export default function ScoringGuide() {
             </p>
             <div className="space-y-2 font-mono text-sm bg-gray-50 rounded-lg p-4 border border-gray-200">
               <p>
-                <span className="text-[#1a3a5c] font-bold">PCS-12</span>
-                {" = Σ(physicalΔ, Q1–Q12) + "}
-                <span className="text-[#1a3a5c] font-bold">56.57706</span>
+                <span className="text-[#0927eb] font-bold">PCS-12</span>
+                {" = Î£(physicalÎ”, Q1â€“Q12) + "}
+                <span className="text-[#0927eb] font-bold">56.57706</span>
               </p>
               <p>
-                <span className="text-[#c8a951] font-bold">MCS-12</span>
-                {" = Σ(mentalΔ,   Q1–Q12) + "}
-                <span className="text-[#c8a951] font-bold">60.75781</span>
+                <span className="text-[#fff504] font-bold">MCS-12</span>
+                {" = Î£(mentalÎ”,   Q1â€“Q12) + "}
+                <span className="text-[#fff504] font-bold">60.75781</span>
               </p>
             </div>
             <p className="text-xs text-gray-400 mt-2">
               Score 50 = US population average; SD = 10. Higher = better health. Best-health answers all map to
-              [0, 0] so perfect health → PCS = 56.58, MCS = 60.76.
+              [0, 0] so perfect health â†’ PCS = 56.58, MCS = 60.76.
             </p>
           </div>
 
           {/* Score bands */}
           <div>
-            <h3 className="text-sm font-semibold text-[#1a3a5c] mb-3">Score Bands</h3>
+            <h3 className="text-sm font-semibold text-[#0927eb] mb-3">Score Bands</h3>
             <div className="overflow-x-auto">
               <table className="text-sm w-full border-collapse">
                 <thead>
@@ -201,11 +201,11 @@ export default function ScoringGuide() {
                 <tbody>
                   <tr>
                     <td className="px-3 py-2 border border-gray-200 font-medium text-green-700">Above Average</td>
-                    <td className="px-3 py-2 border border-gray-200 text-gray-700">≥ 55</td>
+                    <td className="px-3 py-2 border border-gray-200 text-gray-700">â‰¥ 55</td>
                   </tr>
                   <tr className="bg-gray-50">
                     <td className="px-3 py-2 border border-gray-200 font-medium text-yellow-700">Average</td>
-                    <td className="px-3 py-2 border border-gray-200 text-gray-700">45 – 54.9</td>
+                    <td className="px-3 py-2 border border-gray-200 text-gray-700">45 â€“ 54.9</td>
                   </tr>
                   <tr>
                     <td className="px-3 py-2 border border-gray-200 font-medium text-red-700">Below Average</td>
@@ -218,7 +218,7 @@ export default function ScoringGuide() {
 
           {/* Lookup table */}
           <div>
-            <h3 className="text-sm font-semibold text-[#1a3a5c] mb-1">
+            <h3 className="text-sm font-semibold text-[#0927eb] mb-1">
               Lookup Table
             </h3>
             <p className="text-xs text-gray-500 mb-4">
@@ -227,37 +227,37 @@ export default function ScoringGuide() {
                 href="https://orthotoolkit.com/sf-12/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="underline hover:text-[#1a3a5c]"
+                className="underline hover:text-[#0927eb]"
               >
                 orthotoolkit.com/sf-12/
               </a>
-              {" · "}
+              {" Â· "}
               Source:{" "}
               <a
                 href="https://doi.org/10.1097/00005650-199603000-00003"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="underline hover:text-[#1a3a5c]"
+                className="underline hover:text-[#0927eb]"
               >
                 Ware et al. (1996), <em>Medical Care</em> 34(3)
               </a>
               {". "}
-              Q9–Q11 have 6 response options (includes &ldquo;A Good Bit of the time&rdquo;).
+              Q9â€“Q11 have 6 response options (includes &ldquo;A Good Bit of the time&rdquo;).
               Green rows = best-health anchor [0, 0].
             </p>
             <div className="space-y-4">
               {LOOKUP_TABLE.map(({ q, label, rows }) => (
                 <div key={q} className="overflow-x-auto">
-                  <p className="text-xs font-semibold text-[#1a3a5c] mb-1">
-                    {q} — {label}
+                  <p className="text-xs font-semibold text-[#0927eb] mb-1">
+                    {q} â€” {label}
                   </p>
                   <table className="text-xs w-full border-collapse min-w-[420px]">
                     <thead>
                       <tr className="bg-gray-50">
                         <th className="text-left px-3 py-1.5 border border-gray-200 text-gray-500 font-medium">Answer</th>
                         <th className="text-center px-3 py-1.5 border border-gray-200 text-gray-500 font-medium">Value</th>
-                        <th className="text-right px-3 py-1.5 border border-gray-200 text-[#1a3a5c] font-medium">Physical Δ</th>
-                        <th className="text-right px-3 py-1.5 border border-gray-200 text-[#c8a951] font-medium">Mental Δ</th>
+                        <th className="text-right px-3 py-1.5 border border-gray-200 text-[#0927eb] font-medium">Physical Î”</th>
+                        <th className="text-right px-3 py-1.5 border border-gray-200 text-[#fff504] font-medium">Mental Î”</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -272,10 +272,10 @@ export default function ScoringGuide() {
                               )}
                             </td>
                             <td className="px-3 py-1.5 border border-gray-200 text-center text-gray-500">{row.value}</td>
-                            <td className="px-3 py-1.5 border border-gray-200 text-right font-mono text-[#1a3a5c]">
+                            <td className="px-3 py-1.5 border border-gray-200 text-right font-mono text-[#0927eb]">
                               {fmt(row.physical)}
                             </td>
-                            <td className="px-3 py-1.5 border border-gray-200 text-right font-mono text-[#c8a951]">
+                            <td className="px-3 py-1.5 border border-gray-200 text-right font-mono text-[#fff504]">
                               {fmt(row.mental)}
                             </td>
                           </tr>

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { SF12Response } from "@/lib/types";
@@ -16,7 +16,7 @@ export default function TeachingLoadChart({ responses }: TeachingLoadChartProps)
   if (faculty.length === 0) {
     return (
       <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-4 sm:p-6">
-        <h3 className="font-semibold text-[#1a3a5c] mb-1">Teaching Load (Previous Semester)</h3>
+        <h3 className="font-semibold text-[#0927eb] mb-1">Teaching Load (Previous Semester)</h3>
         <p className="text-sm text-gray-400">No faculty responses with teaching load data yet.</p>
       </div>
     );
@@ -57,8 +57,8 @@ export default function TeachingLoadChart({ responses }: TeachingLoadChartProps)
 
   return (
     <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-4 sm:p-6">
-      <h3 className="font-semibold text-[#1a3a5c] mb-1">Teaching Load (Previous Semester)</h3>
-      <p className="text-sm text-gray-500 mb-4">Faculty only · {faculty.length} respondent{faculty.length !== 1 ? "s" : ""}</p>
+      <h3 className="font-semibold text-[#0927eb] mb-1">Teaching Load (Previous Semester)</h3>
+      <p className="text-sm text-gray-500 mb-4">Faculty only Â· {faculty.length} respondent{faculty.length !== 1 ? "s" : ""}</p>
 
       <ResponsiveContainer width="100%" height={Math.max(220, data.length * 55)}>
         <BarChart data={data} layout="vertical" margin={{ left: 24 }}>
@@ -67,8 +67,8 @@ export default function TeachingLoadChart({ responses }: TeachingLoadChartProps)
           <YAxis type="category" dataKey="name" tick={{ fontSize: 12 }} width={130} />
           <Tooltip />
           <Legend />
-          <Bar dataKey="avgPCS" name="Avg PCS-12" fill="#1a3a5c" radius={[0, 4, 4, 0]} />
-          <Bar dataKey="avgMCS" name="Avg MCS-12" fill="#c8a951" radius={[0, 4, 4, 0]} />
+          <Bar dataKey="avgPCS" name="Avg PCS-12" fill="#0927eb" radius={[0, 4, 4, 0]} />
+          <Bar dataKey="avgMCS" name="Avg MCS-12" fill="#fff504" radius={[0, 4, 4, 0]} />
         </BarChart>
       </ResponsiveContainer>
 

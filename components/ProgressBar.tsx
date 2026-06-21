@@ -1,4 +1,4 @@
-interface ProgressBarProps {
+﻿interface ProgressBarProps {
   current: number;
   total: number;
 }
@@ -16,7 +16,7 @@ export default function ProgressBar({ current, total }: ProgressBarProps) {
       </div>
       <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
         <div
-          className="h-full bg-[#c8a951] transition-all duration-300 ease-out rounded-full"
+          className="h-full bg-[#fff504] transition-all duration-300 ease-out rounded-full"
           style={{ width: `${pct}%` }}
         />
       </div>

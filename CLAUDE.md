@@ -99,7 +99,7 @@ stale/empty data). All stats derive from `lib/dashboardUtils.ts`:
 
 ## Branding
 
-Navy `#1a3a5c` / gold `#c8a951`, Inter font, logo at `public/wpu-logo.png`.
+Primary blue `#0927eb` / yellow `#fff504`, Inter font, logo at `public/wpu-logo.png`.
 Per user request, "Faculty and Staff Conference" copy was removed from the UI
 — don't reintroduce it (the original `sf12-claude-code-prompt.md` spec still
 contains it; that file is historical and not updated).

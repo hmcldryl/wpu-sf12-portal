@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { OTHER_OPTION } from "@/lib/respondentOptions";
@@ -38,7 +38,7 @@ export default function SelectWithOther({
             onChange(e.target.value);
           }
         }}
-        className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a3a5c]"
+        className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0927eb]"
       >
         <option value="">Select {label.toLowerCase()}</option>
         {options.map((opt) => (
@@ -52,7 +52,7 @@ export default function SelectWithOther({
           placeholder={otherPlaceholder ?? `Please specify ${label.toLowerCase()}`}
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm mt-2 focus:outline-none focus:ring-2 focus:ring-[#1a3a5c]"
+          className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm mt-2 focus:outline-none focus:ring-2 focus:ring-[#0927eb]"
         />
       )}
     </div>

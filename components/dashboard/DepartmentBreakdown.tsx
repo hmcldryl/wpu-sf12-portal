@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { groupByField } from "@/lib/dashboardUtils";
@@ -24,7 +24,7 @@ export default function DepartmentBreakdown({ responses, field, title }: Departm
 
   return (
     <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-4 sm:p-6">
-      <h3 className="font-semibold text-[#1a3a5c] mb-4">{title}</h3>
+      <h3 className="font-semibold text-[#0927eb] mb-4">{title}</h3>
 
       <ResponsiveContainer width="100%" height={Math.max(220, data.length * 50)}>
         <BarChart data={data} layout="vertical" margin={{ left: 24 }}>
@@ -33,8 +33,8 @@ export default function DepartmentBreakdown({ responses, field, title }: Departm
           <YAxis type="category" dataKey="name" tick={{ fontSize: 12 }} width={120} />
           <Tooltip />
           <Legend />
-          <Bar dataKey="avgPCS" name="Avg PCS-12" fill="#1a3a5c" radius={[0, 4, 4, 0]} />
-          <Bar dataKey="avgMCS" name="Avg MCS-12" fill="#c8a951" radius={[0, 4, 4, 0]} />
+          <Bar dataKey="avgPCS" name="Avg PCS-12" fill="#0927eb" radius={[0, 4, 4, 0]} />
+          <Bar dataKey="avgMCS" name="Avg MCS-12" fill="#fff504" radius={[0, 4, 4, 0]} />
         </BarChart>
       </ResponsiveContainer>
 

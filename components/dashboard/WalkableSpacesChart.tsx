@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import {
   Cell,
@@ -45,7 +45,7 @@ export default function WalkableSpacesChart({ responses }: WalkableSpacesChartPr
 
   return (
     <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-4 sm:p-6">
-      <h3 className="font-semibold text-[#1a3a5c] mb-1">Walkable Spaces Availability</h3>
+      <h3 className="font-semibold text-[#0927eb] mb-1">Walkable Spaces Availability</h3>
 
       {total === 0 ? (
         <p className="text-sm text-gray-400">No responses yet.</p>
@@ -104,10 +104,10 @@ export default function WalkableSpacesChart({ responses }: WalkableSpacesChartPr
                       </td>
                       <td className="py-2 pr-4">{stats.count}</td>
                       <td className="py-2 pr-4">
-                        {stats.count > 0 ? stats.avgPCS.toFixed(2) : "—"}
+                        {stats.count > 0 ? stats.avgPCS.toFixed(2) : "â€”"}
                       </td>
                       <td className="py-2 pr-4">
-                        {stats.count > 0 ? stats.avgMCS.toFixed(2) : "—"}
+                        {stats.count > 0 ? stats.avgMCS.toFixed(2) : "â€”"}
                       </td>
                     </tr>
                   ))}

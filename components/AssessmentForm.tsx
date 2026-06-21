@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -133,7 +133,7 @@ export default function AssessmentForm() {
 
       {step === 0 && (
         <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6 sm:p-8">
-          <h2 className="text-lg font-semibold text-[#1a3a5c] mb-4">Respondent Details</h2>
+          <h2 className="text-lg font-semibold text-[#0927eb] mb-4">Respondent Details</h2>
           <div className="space-y-4">
             <SelectWithOther
               label="College / Unit"
@@ -195,7 +195,7 @@ export default function AssessmentForm() {
                     teachingLoad: employmentType === "Faculty" ? respondent.teachingLoad : undefined,
                   });
                 }}
-                className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a3a5c]"
+                className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0927eb]"
               >
                 <option value="Faculty">Faculty</option>
                 <option value="Staff">Staff</option>
@@ -243,7 +243,7 @@ export default function AssessmentForm() {
                 max={33}
                 value={respondent.salaryGrade || ""}
                 onChange={(e) => setRespondent({ ...respondent, salaryGrade: Number(e.target.value) })}
-                className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a3a5c]"
+                className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0927eb]"
               />
             </div>
 
@@ -254,7 +254,7 @@ export default function AssessmentForm() {
               <select
                 value={respondent.walkableSpaces}
                 onChange={(e) => setRespondent({ ...respondent, walkableSpaces: e.target.value as YesNo })}
-                className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a3a5c]"
+                className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0927eb]"
               >
                 <option value="Yes">Yes</option>
                 <option value="No">No</option>
@@ -274,7 +274,7 @@ export default function AssessmentForm() {
 
       {isReviewStep && (
         <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6 sm:p-8">
-          <h2 className="text-lg font-semibold text-[#1a3a5c] mb-4">Review &amp; Submit</h2>
+          <h2 className="text-lg font-semibold text-[#0927eb] mb-4">Review &amp; Submit</h2>
           <p className="text-sm text-gray-600 mb-4">
             You&apos;re about to submit your responses. Click submit to receive your health
             assessment results.
@@ -349,7 +349,7 @@ export default function AssessmentForm() {
             type="button"
             onClick={handleSubmit}
             disabled={submitting}
-            className="px-6 py-2 rounded-md bg-[#1a3a5c] text-white text-sm font-semibold hover:bg-[#2a4f7a] transition-colors disabled:opacity-60 flex items-center gap-2"
+            className="px-6 py-2 rounded-md bg-[#0927eb] text-white text-sm font-semibold hover:bg-[#3347f0] transition-colors disabled:opacity-60 flex items-center gap-2"
           >
             {submitting && (
               <span className="w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin" />
@@ -360,7 +360,7 @@ export default function AssessmentForm() {
           <button
             type="button"
             onClick={goNext}
-            className="px-6 py-2 rounded-md bg-[#c8a951] text-[#1a3a5c] text-sm font-semibold hover:bg-[#ddc379] transition-colors"
+            className="px-6 py-2 rounded-md bg-[#fff504] text-[#0927eb] text-sm font-semibold hover:bg-[#e6dc04] transition-colors"
           >
             Next
           </button>

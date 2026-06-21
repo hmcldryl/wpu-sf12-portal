@@ -1,4 +1,4 @@
-export default function ExportButtons() {
+﻿export default function ExportButtons() {
   return (
     <div className="flex gap-2">
       <a
@@ -9,7 +9,7 @@ export default function ExportButtons() {
       </a>
       <a
         href="/api/export/pdf"
-        className="px-4 py-2 rounded-md bg-[#c8a951] text-[#1a3a5c] text-sm font-semibold hover:bg-[#ddc379] transition-colors"
+        className="px-4 py-2 rounded-md bg-[#fff504] text-[#0927eb] text-sm font-semibold hover:bg-[#e6dc04] transition-colors"
       >
         Export PDF
       </a>
