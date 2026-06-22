@@ -183,7 +183,7 @@ export default function ScoringGuide() {
             </div>
             <p className="text-xs text-gray-400 mt-2">
               Score 50 = US population average; SD = 10. Higher = better health. Best-health answers all map to
-              [0, 0] so perfect health â†’ PCS = 56.58, MCS = 60.76.
+              [0, 0] so perfect health → PCS = 56.58, MCS = 60.76.
             </p>
           </div>
 
