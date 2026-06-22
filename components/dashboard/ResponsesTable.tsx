@@ -8,6 +8,45 @@ interface ResponsesTableProps {
   responses: SF12Response[];
 }
 
+function DeleteConfirmModal({
+  onConfirm,
+  onCancel,
+  loading,
+}: {
+  onConfirm: () => void;
+  onCancel: () => void;
+  loading: boolean;
+}) {
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+      <div className="bg-white rounded-xl shadow-xl p-6 max-w-sm w-full mx-4">
+        <h2 className="text-lg font-semibold text-gray-900 mb-2">Delete Response</h2>
+        <p className="text-sm text-gray-600 mb-6">
+          This will permanently delete this response. This action cannot be undone.
+        </p>
+        <div className="flex gap-3 justify-end">
+          <button
+            type="button"
+            onClick={onCancel}
+            disabled={loading}
+            className="px-4 py-2 text-sm rounded-md border border-gray-300 hover:bg-gray-50 disabled:opacity-40"
+          >
+            Cancel
+          </button>
+          <button
+            type="button"
+            onClick={onConfirm}
+            disabled={loading}
+            className="px-4 py-2 text-sm rounded-md bg-red-600 text-white hover:bg-red-700 disabled:opacity-40"
+          >
+            {loading ? "Deleting…" : "Delete"}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 type SortKey =
   | "timestamp"
   | "collegeUnit"
@@ -27,6 +66,7 @@ type SortKey =
 const PAGE_SIZE = 20;
 
 export default function ResponsesTable({ responses }: ResponsesTableProps) {
+  const [rows, setRows] = useState<SF12Response[]>(responses);
   const [search, setSearch] = useState("");
   const [employmentFilter, setEmploymentFilter] = useState("");
   const [genderFilter, setGenderFilter] = useState("");
@@ -36,11 +76,27 @@ export default function ResponsesTable({ responses }: ResponsesTableProps) {
   const [sortDir, setSortDir] = useState<"asc" | "desc">("desc");
   const [page, setPage] = useState(1);
   const [expandedId, setExpandedId] = useState<string | null>(null);
+  const [confirmDeleteId, setConfirmDeleteId] = useState<string | null>(null);
+  const [deleting, setDeleting] = useState(false);
+
+  async function handleDelete(id: string) {
+    setDeleting(true);
+    try {
+      const res = await fetch(`/api/dashboard/responses/${id}`, { method: "DELETE" });
+      if (res.ok) {
+        setRows((prev) => prev.filter((r) => r.id !== id));
+        setExpandedId(null);
+      }
+    } finally {
+      setDeleting(false);
+      setConfirmDeleteId(null);
+    }
+  }
 
   const filtered = useMemo(() => {
     const term = search.trim().toLowerCase();
 
-    return responses.filter((r) => {
+    return rows.filter((r) => {
       if (term) {
         const haystack = `${r.collegeUnit} ${r.campus}`.toLowerCase();
         if (!haystack.includes(term)) return false;
@@ -51,7 +107,7 @@ export default function ResponsesTable({ responses }: ResponsesTableProps) {
       if (mcsBandFilter && getScoreBand(r.mcs12) !== mcsBandFilter) return false;
       return true;
     });
-  }, [responses, search, employmentFilter, genderFilter, pcsBandFilter, mcsBandFilter]);
+  }, [rows, search, employmentFilter, genderFilter, pcsBandFilter, mcsBandFilter]);
 
   const sorted = useMemo(() => {
     const list = [...filtered];
@@ -215,12 +271,21 @@ export default function ResponsesTable({ responses }: ResponsesTableProps) {
                   {isExpanded && (
                     <tr className="border-b border-gray-100 bg-gray-50">
                       <td colSpan={columns.length + 3} className="py-3 px-4">
-                        <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-2 text-xs text-gray-600">
-                          {Object.entries(r.rawResponses).map(([q, val]) => (
-                            <div key={q} className="bg-white rounded border border-gray-200 px-2 py-1">
-                              <span className="font-semibold">{q}:</span> {val}
-                            </div>
-                          ))}
+                        <div className="flex items-start justify-between gap-4">
+                          <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-2 text-xs text-gray-600 flex-1">
+                            {Object.entries(r.rawResponses).map(([q, val]) => (
+                              <div key={q} className="bg-white rounded border border-gray-200 px-2 py-1">
+                                <span className="font-semibold">{q}:</span> {val}
+                              </div>
+                            ))}
+                          </div>
+                          <button
+                            type="button"
+                            onClick={(e) => { e.stopPropagation(); setConfirmDeleteId(r.id); }}
+                            className="shrink-0 px-3 py-1.5 text-xs rounded-md bg-red-50 text-red-600 border border-red-200 hover:bg-red-100"
+                          >
+                            Delete
+                          </button>
                         </div>
                       </td>
                     </tr>
@@ -265,6 +330,14 @@ export default function ResponsesTable({ responses }: ResponsesTableProps) {
           </button>
         </div>
       </div>
+
+      {confirmDeleteId && (
+        <DeleteConfirmModal
+          loading={deleting}
+          onConfirm={() => handleDelete(confirmDeleteId)}
+          onCancel={() => setConfirmDeleteId(null)}
+        />
+      )}
     </div>
   );
 }
