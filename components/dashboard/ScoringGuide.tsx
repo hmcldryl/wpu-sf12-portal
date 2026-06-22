@@ -144,7 +144,7 @@ export default function ScoringGuide() {
             Lookup table values, formulas, and score band definitions
           </p>
         </div>
-        <span className="text-gray-400 text-lg select-none">{open ? "â–²" : "â–¼"}</span>
+        <span className="text-gray-400 text-lg select-none">{open ? "^" : "˅"}</span>
       </button>
 
       {open && (
@@ -172,12 +172,12 @@ export default function ScoringGuide() {
             <div className="space-y-2 font-mono text-sm bg-gray-50 rounded-lg p-4 border border-gray-200">
               <p>
                 <span className="text-[#0927eb] font-bold">PCS-12</span>
-                {" = Σ(physicalΔ, Q1â€“Q12) + "}
+                {" = Σ(physicalΔ, Q1—Q12) + "}
                 <span className="text-[#0927eb] font-bold">56.57706</span>
               </p>
               <p>
                 <span className="text-[#fff504] font-bold">MCS-12</span>
-                {" = Σ(mentalΔ,   Q1â€“Q12) + "}
+                {" = Σ(mentalΔ,   Q1—Q12) + "}
                 <span className="text-[#fff504] font-bold">60.75781</span>
               </p>
             </div>
@@ -205,7 +205,7 @@ export default function ScoringGuide() {
                   </tr>
                   <tr className="bg-gray-50">
                     <td className="px-3 py-2 border border-gray-200 font-medium text-yellow-700">Average</td>
-                    <td className="px-3 py-2 border border-gray-200 text-gray-700">45 â€“ 54.9</td>
+                    <td className="px-3 py-2 border border-gray-200 text-gray-700">45 — 54.9</td>
                   </tr>
                   <tr>
                     <td className="px-3 py-2 border border-gray-200 font-medium text-red-700">Below Average</td>
@@ -242,7 +242,7 @@ export default function ScoringGuide() {
                 Ware et al. (1996), <em>Medical Care</em> 34(3)
               </a>
               {". "}
-              Q9â€“Q11 have 6 response options (includes &ldquo;A Good Bit of the time&rdquo;).
+              Q9—Q11 have 6 response options (includes &ldquo;A Good Bit of the time&rdquo;).
               Green rows = best-health anchor [0, 0].
             </p>
             <div className="space-y-4">

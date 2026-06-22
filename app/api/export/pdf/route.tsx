@@ -194,14 +194,14 @@ function ReportDocument({ responses }: ReportProps) {
         <Text style={styles.footerText}>
           Ware, J. E., Kosinski, M., &amp; Keller, S. D. (1996). A 12-Item Short-Form Health Survey:
           Construction of scales and preliminary tests of reliability and validity. Medical Care,
-          34(3), 220â€“233. https://doi.org/10.1097/00005650-199603000-00003
+          34(3), 220—233. https://doi.org/10.1097/00005650-199603000-00003
         </Text>
         <Text style={styles.footerText}>
           Gandek, B., Ware, J. E., Aaronson, N. K., Apolone, G., Bjorner, J. B., Brazier, J. E.,
           Bullinger, M., Kaasa, S., Leplege, A., Prieto, L., &amp; Sullivan, M. (1998).
           Cross-validation of item selection and scoring for the SF-12 Health Survey in nine
           countries: Results from the IQOLA Project. Journal of Clinical Epidemiology, 51(11),
-          1171â€“1178. https://doi.org/10.1016/S0895-4356(98)00109-7
+          1171—1178. https://doi.org/10.1016/S0895-4356(98)00109-7
         </Text>
         <Text style={styles.footerText}>
           OrthoToolKit. (n.d.). Free online SF-12 score calculator. https://orthotoolkit.com/sf-12/

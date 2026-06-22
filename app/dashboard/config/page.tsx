@@ -161,7 +161,7 @@ export default function ConfigPage() {
                 <span className="text-sm font-semibold text-[#0927eb]">
                   {q} — {qDef.text}
                 </span>
-                <span className="text-gray-400 select-none">{isOpen ? "â–²" : "â–¼"}</span>
+                <span className="text-gray-400 select-none">{isOpen ? "^" : "˅"}</span>
               </button>
 
               {isOpen && (
