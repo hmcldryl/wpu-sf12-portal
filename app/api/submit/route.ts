@@ -26,7 +26,7 @@ export async function POST(request: NextRequest) {
 
   const timestamp = new Date().toISOString();
 
-  const doc = {
+  const doc: Record<string, unknown> = {
     timestamp,
     collegeUnit: respondentInfo.collegeUnit,
     campus: respondentInfo.campus,
@@ -34,8 +34,7 @@ export async function POST(request: NextRequest) {
     sexAtBirth: respondentInfo.sexAtBirth,
     gender: respondentInfo.gender,
     employmentType: respondentInfo.employmentType,
-    academicRank: respondentInfo.academicRank || "",
-    teachingLoad: respondentInfo.teachingLoad,
+    academicRank: respondentInfo.academicRank ?? "",
     employmentStatus: respondentInfo.employmentStatus,
     salaryGrade: respondentInfo.salaryGrade,
     walkableSpaces: respondentInfo.walkableSpaces,
@@ -43,6 +42,9 @@ export async function POST(request: NextRequest) {
     pcs12,
     mcs12,
   };
+  if (respondentInfo.teachingLoad !== undefined) {
+    doc.teachingLoad = respondentInfo.teachingLoad;
+  }
 
   try {
     const db = getAdminDb();
