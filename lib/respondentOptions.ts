@@ -125,15 +125,6 @@ export const ACADEMIC_RANK_OPTIONS: string[] = [
   "Professor VI",
 ];
 
-export const TEACHING_LOAD_OPTIONS: string[] = [
-  "6 units or less",
-  "7–9 units",
-  "10–12 units",
-  "13–15 units",
-  "16–18 units",
-  "19 units or more",
-];
-
 export const EMPLOYMENT_STATUS_OPTIONS: string[] = ["Permanent", "COS", "Job Order"];
 
 export const OTHER_OPTION = "Other";

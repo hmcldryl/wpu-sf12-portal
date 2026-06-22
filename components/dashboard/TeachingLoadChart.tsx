@@ -1,17 +1,14 @@
-﻿"use client";
+"use client";
 
 import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { SF12Response } from "@/lib/types";
-import { TEACHING_LOAD_OPTIONS } from "@/lib/respondentOptions";
 
 interface TeachingLoadChartProps {
   responses: SF12Response[];
 }
 
-const LOAD_ORDER = [...TEACHING_LOAD_OPTIONS, "Other"];
-
 export default function TeachingLoadChart({ responses }: TeachingLoadChartProps) {
-  const faculty = responses.filter((r) => r.employmentType === "Faculty" && r.teachingLoad);
+  const faculty = responses.filter((r) => r.employmentType === "Faculty" && r.teachingLoad !== undefined);
 
   if (faculty.length === 0) {
     return (
@@ -22,7 +19,7 @@ export default function TeachingLoadChart({ responses }: TeachingLoadChartProps)
     );
   }
 
-  const grouped: Record<string, { count: number; pcsSum: number; mcsSum: number }> = {};
+  const grouped: Record<number, { count: number; pcsSum: number; mcsSum: number }> = {};
   for (const r of faculty) {
     const key = r.teachingLoad!;
     if (!grouped[key]) grouped[key] = { count: 0, pcsSum: 0, mcsSum: 0 };
@@ -31,40 +28,25 @@ export default function TeachingLoadChart({ responses }: TeachingLoadChartProps)
     grouped[key].mcsSum += r.mcs12;
   }
 
-  const data = LOAD_ORDER
-    .filter((label) => grouped[label])
-    .map((label) => {
-      const g = grouped[label];
-      return {
-        name: label,
-        count: g.count,
-        avgPCS: parseFloat((g.pcsSum / g.count).toFixed(2)),
-        avgMCS: parseFloat((g.mcsSum / g.count).toFixed(2)),
-      };
-    });
-
-  // append any "other" free-text values not in LOAD_ORDER
-  for (const [key, g] of Object.entries(grouped)) {
-    if (!LOAD_ORDER.includes(key)) {
-      data.push({
-        name: key,
-        count: g.count,
-        avgPCS: parseFloat((g.pcsSum / g.count).toFixed(2)),
-        avgMCS: parseFloat((g.mcsSum / g.count).toFixed(2)),
-      });
-    }
-  }
+  const data = Object.entries(grouped)
+    .sort(([a], [b]) => Number(a) - Number(b))
+    .map(([load, g]) => ({
+      name: `${load} units`,
+      count: g.count,
+      avgPCS: parseFloat((g.pcsSum / g.count).toFixed(2)),
+      avgMCS: parseFloat((g.mcsSum / g.count).toFixed(2)),
+    }));
 
   return (
     <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-4 sm:p-6">
       <h3 className="font-semibold text-[#0927eb] mb-1">Teaching Load (Previous Semester)</h3>
-      <p className="text-sm text-gray-500 mb-4">Faculty only Â· {faculty.length} respondent{faculty.length !== 1 ? "s" : ""}</p>
+      <p className="text-sm text-gray-500 mb-4">Faculty only · {faculty.length} respondent{faculty.length !== 1 ? "s" : ""}</p>
 
       <ResponsiveContainer width="100%" height={Math.max(220, data.length * 55)}>
         <BarChart data={data} layout="vertical" margin={{ left: 24 }}>
           <CartesianGrid strokeDasharray="3 3" horizontal={false} />
           <XAxis type="number" domain={[0, 100]} tick={{ fontSize: 12 }} />
-          <YAxis type="category" dataKey="name" tick={{ fontSize: 12 }} width={130} />
+          <YAxis type="category" dataKey="name" tick={{ fontSize: 12 }} width={100} />
           <Tooltip />
           <Legend />
           <Bar dataKey="avgPCS" name="Avg PCS-12" fill="#0927eb" radius={[0, 4, 4, 0]} />

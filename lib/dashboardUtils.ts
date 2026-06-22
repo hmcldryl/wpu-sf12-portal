@@ -157,7 +157,7 @@ export function formatForCSV(responses: SF12Response[]): string {
       r.gender,
       r.employmentType,
       r.academicRank || "",
-      r.teachingLoad || "",
+      r.teachingLoad ?? "",
       r.employmentStatus,
       r.salaryGrade,
       r.walkableSpaces,

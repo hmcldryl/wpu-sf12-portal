@@ -12,7 +12,7 @@ export type AgeGroup = string;
 
 export type AcademicRank = string;
 
-export type TeachingLoad = string;
+export type TeachingLoad = number;
 
 export type EmploymentStatus = string;
 

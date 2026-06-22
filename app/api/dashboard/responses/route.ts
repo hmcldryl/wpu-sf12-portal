@@ -19,7 +19,7 @@ export async function GET() {
         gender: data.gender,
         employmentType: data.employmentType,
         academicRank: data.academicRank || "",
-        teachingLoad: data.teachingLoad || "",
+        teachingLoad: typeof data.teachingLoad === "number" ? data.teachingLoad : undefined,
         employmentStatus: data.employmentStatus,
         salaryGrade: data.salaryGrade,
         walkableSpaces: data.walkableSpaces,

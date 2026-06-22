@@ -35,7 +35,7 @@ async function getResponses(): Promise<SF12Response[]> {
         gender: data.gender,
         employmentType: data.employmentType,
         academicRank: data.academicRank || "",
-        teachingLoad: data.teachingLoad || "",
+        teachingLoad: typeof data.teachingLoad === "number" ? data.teachingLoad : undefined,
         employmentStatus: data.employmentStatus,
         salaryGrade: data.salaryGrade,
         walkableSpaces: data.walkableSpaces,
@@ -62,7 +62,7 @@ export default async function DashboardPage() {
             <Image src="/wpu-logo.png" alt="Western Philippines University" width={36} height={36} />
             <div>
               <p className="text-xs text-[#fff504] uppercase tracking-wide">Western Philippines University</p>
-              <h1 className="text-lg font-semibold">WPU SF-12 Portal â€” Admin Dashboard</h1>
+              <h1 className="text-lg font-semibold">WPU SF-12 Portal | Admin Dashboard</h1>
             </div>
           </div>
           <div className="flex items-center gap-4">

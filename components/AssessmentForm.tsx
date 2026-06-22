@@ -16,7 +16,6 @@ import {
   EMPLOYMENT_STATUS_OPTIONS,
   GENDER_OPTIONS,
   SEX_AT_BIRTH_OPTIONS,
-  TEACHING_LOAD_OPTIONS,
 } from "@/lib/respondentOptions";
 
 const TOTAL_STEPS = SF12_STEPS.length + 2; // respondent info + questions + review
@@ -56,7 +55,7 @@ export default function AssessmentForm() {
       if (!respondent.gender.trim()) return false;
       if (!respondent.employmentType) return false;
       if (respondent.employmentType === "Faculty" && !respondent.academicRank?.trim()) return false;
-      if (respondent.employmentType === "Faculty" && !respondent.teachingLoad?.trim()) return false;
+      if (respondent.employmentType === "Faculty" && respondent.teachingLoad === undefined) return false;
       if (!respondent.employmentStatus.trim()) return false;
       if (!respondent.salaryGrade || respondent.salaryGrade <= 0) return false;
       if (!respondent.walkableSpaces) return false;
@@ -214,14 +213,28 @@ export default function AssessmentForm() {
             )}
 
             {respondent.employmentType === "Faculty" && (
-              <SelectWithOther
-                label="Teaching Load (Previous Semester)"
-                required
-                value={respondent.teachingLoad ?? ""}
-                options={TEACHING_LOAD_OPTIONS}
-                onChange={(v) => setRespondent({ ...respondent, teachingLoad: v })}
-                otherPlaceholder="Please specify your teaching load"
-              />
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Teaching Load (Previous Semester) <span className="text-red-500">*</span>
+                </label>
+                <div className="flex items-center gap-2">
+                  <input
+                    type="number"
+                    min={0}
+                    step={1}
+                    value={respondent.teachingLoad ?? ""}
+                    onChange={(e) =>
+                      setRespondent({
+                        ...respondent,
+                        teachingLoad: e.target.value !== "" ? Number(e.target.value) : undefined,
+                      })
+                    }
+                    placeholder="e.g. 12"
+                    className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0927eb]"
+                  />
+                  <span className="text-sm text-gray-500 whitespace-nowrap">units</span>
+                </div>
+              </div>
             )}
 
             <SelectWithOther
