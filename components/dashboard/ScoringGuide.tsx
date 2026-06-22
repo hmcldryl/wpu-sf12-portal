@@ -153,11 +153,11 @@ export default function ScoringGuide() {
           <div className="pt-6 grid sm:grid-cols-2 gap-4">
             <div className="bg-blue-50 rounded-lg p-4 border border-blue-100">
               <p className="text-xs font-semibold text-[#0927eb] uppercase tracking-wide mb-1">PCS-12</p>
-              <p className="text-sm text-gray-700">Physical Component Summary â€” measures physical health functioning.</p>
+              <p className="text-sm text-gray-700">Physical Component Summary — measures physical health functioning.</p>
             </div>
             <div className="bg-amber-50 rounded-lg p-4 border border-amber-100">
               <p className="text-xs font-semibold text-[#fff504] uppercase tracking-wide mb-1">MCS-12</p>
-              <p className="text-sm text-gray-700">Mental Component Summary â€” measures mental health functioning.</p>
+              <p className="text-sm text-gray-700">Mental Component Summary — measures mental health functioning.</p>
             </div>
           </div>
 
@@ -172,12 +172,12 @@ export default function ScoringGuide() {
             <div className="space-y-2 font-mono text-sm bg-gray-50 rounded-lg p-4 border border-gray-200">
               <p>
                 <span className="text-[#0927eb] font-bold">PCS-12</span>
-                {" = Î£(physicalÎ”, Q1â€“Q12) + "}
+                {" = Σ(physicalΔ, Q1â€“Q12) + "}
                 <span className="text-[#0927eb] font-bold">56.57706</span>
               </p>
               <p>
                 <span className="text-[#fff504] font-bold">MCS-12</span>
-                {" = Î£(mentalÎ”,   Q1â€“Q12) + "}
+                {" = Σ(mentalΔ,   Q1â€“Q12) + "}
                 <span className="text-[#fff504] font-bold">60.75781</span>
               </p>
             </div>
@@ -249,15 +249,15 @@ export default function ScoringGuide() {
               {LOOKUP_TABLE.map(({ q, label, rows }) => (
                 <div key={q} className="overflow-x-auto">
                   <p className="text-xs font-semibold text-[#0927eb] mb-1">
-                    {q} â€” {label}
+                    {q} — {label}
                   </p>
                   <table className="text-xs w-full border-collapse min-w-[420px]">
                     <thead>
                       <tr className="bg-gray-50">
                         <th className="text-left px-3 py-1.5 border border-gray-200 text-gray-500 font-medium">Answer</th>
                         <th className="text-center px-3 py-1.5 border border-gray-200 text-gray-500 font-medium">Value</th>
-                        <th className="text-right px-3 py-1.5 border border-gray-200 text-[#0927eb] font-medium">Physical Î”</th>
-                        <th className="text-right px-3 py-1.5 border border-gray-200 text-[#fff504] font-medium">Mental Î”</th>
+                        <th className="text-right px-3 py-1.5 border border-gray-200 text-[#0927eb] font-medium">PhysicalΔ</th>
+                        <th className="text-right px-3 py-1.5 border border-gray-200 text-[#fff504] font-medium">MentalΔ</th>
                       </tr>
                     </thead>
                     <tbody>

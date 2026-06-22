@@ -202,8 +202,8 @@ export default function ResponsesTable({ responses }: ResponsesTableProps) {
                     <td className="py-2 pr-4">{r.sexAtBirth}</td>
                     <td className="py-2 pr-4">{r.gender}</td>
                     <td className="py-2 pr-4">{r.employmentType}</td>
-                    <td className="py-2 pr-4">{r.academicRank || "â€”"}</td>
-                    <td className="py-2 pr-4">{r.teachingLoad || "â€”"}</td>
+                    <td className="py-2 pr-4">{r.academicRank || "—"}</td>
+                    <td className="py-2 pr-4">{r.teachingLoad || "—"}</td>
                     <td className="py-2 pr-4">{r.employmentStatus}</td>
                     <td className="py-2 pr-4">{r.salaryGrade}</td>
                     <td className="py-2 pr-4">{r.walkableSpaces}</td>

@@ -85,7 +85,7 @@ export default function ConfigPage() {
             <Image src="/wpu-logo.png" alt="Western Philippines University" width={36} height={36} />
             <div>
               <p className="text-xs text-[#fff504] uppercase tracking-wide">Western Philippines University</p>
-              <h1 className="text-lg font-semibold">SF-12 Scoring Weights â€” Configuration</h1>
+              <h1 className="text-lg font-semibold">SF-12 Scoring Weights — Configuration</h1>
             </div>
           </div>
           <Link
@@ -118,9 +118,9 @@ export default function ConfigPage() {
             </a>
           </p>
           <p className="text-xs text-gray-400 mt-1">
-            Formula: <span className="font-mono">PCS-12 = Î£(physicalÎ”) + 56.57706</span>
+            Formula: <span className="font-mono">PCS-12 = Σ(physicalΔ) + 56.57706</span>
             {" Â· "}
-            <span className="font-mono">MCS-12 = Î£(mentalÎ”) + 60.75781</span>
+            <span className="font-mono">MCS-12 = Σ(mentalΔ) + 60.75781</span>
           </p>
         </div>
 
@@ -159,7 +159,7 @@ export default function ConfigPage() {
                 className="w-full flex items-center justify-between px-5 py-3 text-left hover:bg-gray-50 transition-colors"
               >
                 <span className="text-sm font-semibold text-[#0927eb]">
-                  {q} â€” {qDef.text}
+                  {q} — {qDef.text}
                 </span>
                 <span className="text-gray-400 select-none">{isOpen ? "â–²" : "â–¼"}</span>
               </button>
@@ -173,10 +173,10 @@ export default function ConfigPage() {
                           Answer
                         </th>
                         <th className="text-center px-4 py-2 border-b border-gray-200 text-[#0927eb] font-medium">
-                          Physical Î”
+                          PhysicalΔ
                         </th>
                         <th className="text-center px-4 py-2 border-b border-gray-200 text-[#fff504] font-medium">
-                          Mental Î”
+                          MentalΔ
                         </th>
                       </tr>
                     </thead>

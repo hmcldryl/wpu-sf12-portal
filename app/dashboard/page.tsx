@@ -80,7 +80,7 @@ export default async function DashboardPage() {
       </header>
 
       <main className="flex-1 max-w-6xl mx-auto w-full px-4 py-8 space-y-8">
-        {/* Section 1 â€” KPI Cards */}
+        {/* Section 1 — KPI Cards */}
         <section className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           <StatCard label="Total Responses" value={String(stats.total)} />
           <StatCard
@@ -105,7 +105,7 @@ export default async function DashboardPage() {
           <HealthOverview responses={responses} />
         </section>
 
-        {/* Section 2 â€” Score Distribution */}
+        {/* Section 2 — Score Distribution */}
         <section className="grid sm:grid-cols-2 gap-6">
           <ScoreDistributionChart responses={responses} field="pcs12" title="PCS-12 Distribution" />
           <ScoreDistributionChart responses={responses} field="mcs12" title="MCS-12 Distribution" />
@@ -121,7 +121,7 @@ export default async function DashboardPage() {
           <TeachingLoadChart responses={responses} />
         </section>
 
-        {/* Section 3 â€” Breakdown by Group */}
+        {/* Section 3 — Breakdown by Group */}
         <section className="space-y-6">
           <DepartmentBreakdown responses={responses} field="collegeUnit" title="College / Unit" />
           <DepartmentBreakdown responses={responses} field="campus" title="Campus / Station" />
@@ -137,7 +137,7 @@ export default async function DashboardPage() {
           <ScoringGuide />
         </section>
 
-        {/* Section 4 â€” Individual Responses */}
+        {/* Section 4 — Individual Responses */}
         <section>
           <ResponsesTable responses={responses} />
         </section>

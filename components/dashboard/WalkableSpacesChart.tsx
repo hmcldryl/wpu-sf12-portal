@@ -104,10 +104,10 @@ export default function WalkableSpacesChart({ responses }: WalkableSpacesChartPr
                       </td>
                       <td className="py-2 pr-4">{stats.count}</td>
                       <td className="py-2 pr-4">
-                        {stats.count > 0 ? stats.avgPCS.toFixed(2) : "â€”"}
+                        {stats.count > 0 ? stats.avgPCS.toFixed(2) : "—"}
                       </td>
                       <td className="py-2 pr-4">
-                        {stats.count > 0 ? stats.avgMCS.toFixed(2) : "â€”"}
+                        {stats.count > 0 ? stats.avgMCS.toFixed(2) : "—"}
                       </td>
                     </tr>
                   ))}

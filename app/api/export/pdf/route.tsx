@@ -43,7 +43,7 @@ function ReportDocument({ responses }: ReportProps) {
 
   return (
     <Document>
-      {/* Page 1 â€” Cover */}
+      {/* Page 1 — Cover */}
       <Page size="A4" style={styles.page}>
         <View style={styles.cover}>
           <Text style={styles.title}>WPU SF-12 Portal</Text>
@@ -54,7 +54,7 @@ function ReportDocument({ responses }: ReportProps) {
         </View>
       </Page>
 
-      {/* Page 2 â€” Executive Summary */}
+      {/* Page 2 — Executive Summary */}
       <Page size="A4" style={styles.page}>
         <Text style={styles.sectionTitle}>Executive Summary</Text>
         <Text style={styles.text}>Average PCS-12: {stats.avgPCS.toFixed(2)} (Â±{stats.sdPCS.toFixed(2)})</Text>
@@ -70,7 +70,7 @@ function ReportDocument({ responses }: ReportProps) {
         </Text>
       </Page>
 
-      {/* Page 3 â€” Score Distribution */}
+      {/* Page 3 — Score Distribution */}
       <Page size="A4" style={styles.page}>
         <Text style={styles.sectionTitle}>Score Distribution</Text>
 
@@ -123,7 +123,7 @@ function ReportDocument({ responses }: ReportProps) {
         </View>
       </Page>
 
-      {/* Page 4 â€” Breakdown by Group */}
+      {/* Page 4 — Breakdown by Group */}
       <Page size="A4" style={styles.page}>
         <Text style={styles.sectionTitle}>Breakdown by Group</Text>
 
@@ -182,7 +182,7 @@ function ReportDocument({ responses }: ReportProps) {
         </View>
       </Page>
 
-      {/* Page 5 â€” Citation & Disclaimer */}
+      {/* Page 5 — Citation & Disclaimer */}
       <Page size="A4" style={styles.page}>
         <Text style={styles.sectionTitle}>Citation &amp; Disclaimer</Text>
         <Text style={styles.text}>

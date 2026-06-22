@@ -81,7 +81,7 @@ export default function ResultsPage() {
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
       <header className="bg-[#0927eb] text-white py-6 px-4 text-center no-print">
-        <h1 className="text-lg font-semibold">WPU SF-12 Portal â€” Results</h1>
+        <h1 className="text-lg font-semibold">WPU SF-12 Portal — Results</h1>
       </header>
 
       <main className="flex-1 max-w-2xl mx-auto px-4 py-8 w-full">
