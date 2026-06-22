@@ -201,7 +201,7 @@ export default function ScoringGuide() {
                 <tbody>
                   <tr>
                     <td className="px-3 py-2 border border-gray-200 font-medium text-green-700">Above Average</td>
-                    <td className="px-3 py-2 border border-gray-200 text-gray-700">â‰¥ 55</td>
+                    <td className="px-3 py-2 border border-gray-200 text-gray-700">≥ 55</td>
                   </tr>
                   <tr className="bg-gray-50">
                     <td className="px-3 py-2 border border-gray-200 font-medium text-yellow-700">Average</td>
