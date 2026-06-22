@@ -41,7 +41,7 @@ export default function DashboardLoginPage() {
         <div className="flex justify-center mb-3">
           <Image src="/wpu-logo.png" alt="Western Philippines University" width={56} height={56} />
         </div>
-        <h1 className="text-lg font-semibold text-[#0927eb] mb-1 text-center">
+        <h1 className="text-lg font-semibold text-[#0076cd] mb-1 text-center">
           WPU SF-12 Portal
         </h1>
         <p className="text-sm text-gray-500 mb-6 text-center">Admin Dashboard Login</p>
@@ -53,7 +53,7 @@ export default function DashboardLoginPage() {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0927eb]"
+              className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0076cd]"
               autoFocus
             />
           </div>
@@ -63,7 +63,7 @@ export default function DashboardLoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full px-6 py-2 rounded-md bg-[#0927eb] text-white text-sm font-semibold hover:bg-[#3347f0] transition-colors disabled:opacity-60"
+            className="w-full px-6 py-2 rounded-md bg-[#0076cd] text-white text-sm font-semibold hover:bg-[#3347f0] transition-colors disabled:opacity-60"
           >
             {loading ? "Signing in..." : "Sign In"}
           </button>

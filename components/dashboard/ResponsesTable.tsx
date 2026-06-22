@@ -139,9 +139,13 @@ export default function ResponsesTable({ responses }: ResponsesTableProps) {
     setPage(1);
   }
 
-  function sortIndicator(key: SortKey) {
-    if (sortKey !== key) return "";
-    return sortDir === "asc" ? " ︿" : " ﹀";
+  function SortIcon({ col }: { col: SortKey }) {
+    if (sortKey !== col) return null;
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={`inline ml-1 ${sortDir === "asc" ? "rotate-180" : ""}`}>
+        <polyline points="6 9 12 15 18 9"/>
+      </svg>
+    );
   }
 
   const columns: { key: SortKey; label: string }[] = [
@@ -163,7 +167,7 @@ export default function ResponsesTable({ responses }: ResponsesTableProps) {
 
   return (
     <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-4 sm:p-6">
-      <h3 className="font-semibold text-[#0927eb] mb-4">Individual Responses</h3>
+      <h3 className="font-semibold text-gray-900 mb-4">Individual Responses</h3>
 
       <div className="flex flex-wrap gap-2 mb-4">
         <input
@@ -174,7 +178,7 @@ export default function ResponsesTable({ responses }: ResponsesTableProps) {
             setSearch(e.target.value);
             setPage(1);
           }}
-          className="flex-1 min-w-[200px] border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0927eb]"
+          className="flex-1 min-w-[200px] border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0076cd]"
         />
         <select
           value={employmentFilter}
@@ -230,7 +234,7 @@ export default function ResponsesTable({ responses }: ResponsesTableProps) {
                   className="py-2 pr-4 cursor-pointer select-none hover:text-gray-700 whitespace-nowrap"
                 >
                   {col.label}
-                  {sortIndicator(col.key)}
+                  <SortIcon col={col.key} />
                 </th>
               ))}
               <th className="py-2 pr-4">PCS Band</th>

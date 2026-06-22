@@ -59,7 +59,7 @@ export default function ResultsPage() {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen px-4 text-center">
         <p className="text-gray-600 mb-4">No results found. Please complete the assessment first.</p>
-        <Link href="/" className="text-[#0927eb] font-semibold underline">
+        <Link href="/" className="text-[#0076cd] font-semibold underline">
           Go to Home
         </Link>
       </div>
@@ -69,7 +69,7 @@ export default function ResultsPage() {
   if (!result) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <span className="w-8 h-8 border-2 border-gray-300 border-t-[#0927eb] rounded-full animate-spin" />
+        <span className="w-8 h-8 border-2 border-gray-300 border-t-[#0076cd] rounded-full animate-spin" />
       </div>
     );
   }
@@ -80,19 +80,19 @@ export default function ResultsPage() {
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
-      <header className="bg-[#0927eb] text-white py-6 px-4 text-center no-print">
+      <header className="bg-[#0076cd] text-white py-6 px-4 text-center no-print">
         <h1 className="text-lg font-semibold">WPU SF-12 Portal — Results</h1>
       </header>
 
       <main className="flex-1 max-w-2xl mx-auto px-4 py-8 w-full">
         <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6 sm:p-8 mb-6 text-center">
-          <h2 className="text-xl font-bold text-[#0927eb]">{respondent.collegeUnit}</h2>
+          <h2 className="text-xl font-bold text-[#0076cd]">{respondent.collegeUnit}</h2>
           <p className="text-gray-500 text-sm">{respondent.campus}</p>
         </div>
 
         <div className="grid sm:grid-cols-2 gap-6 mb-6">
           <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6 text-center">
-            <h3 className="font-semibold text-[#0927eb] mb-2">Physical Health (PCS-12)</h3>
+            <h3 className="font-semibold text-[#0076cd] mb-2">Physical Health (PCS-12)</h3>
             <ScoreGauge score={pcs12} label="PCS-12" />
             <p className="text-sm text-gray-600 mt-2">{diffLabel(pcs12)}</p>
             <span
@@ -103,7 +103,7 @@ export default function ResultsPage() {
           </div>
 
           <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6 text-center">
-            <h3 className="font-semibold text-[#0927eb] mb-2">Mental Health (MCS-12)</h3>
+            <h3 className="font-semibold text-[#0076cd] mb-2">Mental Health (MCS-12)</h3>
             <ScoreGauge score={mcs12} label="MCS-12" />
             <p className="text-sm text-gray-600 mt-2">{diffLabel(mcs12)}</p>
             <span
@@ -116,7 +116,7 @@ export default function ResultsPage() {
 
         <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6 sm:p-8 mb-6 space-y-4">
           <div>
-            <h3 className="font-semibold text-[#0927eb] mb-1">Physical Health Summary</h3>
+            <h3 className="font-semibold text-[#0076cd] mb-1">Physical Health Summary</h3>
             <p className="text-sm text-gray-600">
               The Physical Component Summary (PCS-12) reflects your ability to perform
               physical activities, manage pain, and maintain energy levels.{" "}
@@ -124,7 +124,7 @@ export default function ResultsPage() {
             </p>
           </div>
           <div>
-            <h3 className="font-semibold text-[#0927eb] mb-1">Mental Health Summary</h3>
+            <h3 className="font-semibold text-[#0076cd] mb-1">Mental Health Summary</h3>
             <p className="text-sm text-gray-600">
               The Mental Component Summary (MCS-12) reflects your mood, sense of calm,
               and ability to engage in social activities.{" "}
@@ -137,13 +137,13 @@ export default function ResultsPage() {
           <button
             type="button"
             onClick={() => window.print()}
-            className="px-6 py-2 rounded-md border border-[#0927eb] text-[#0927eb] text-sm font-semibold hover:bg-[#0927eb]/5 transition-colors"
+            className="px-6 py-2 rounded-md border border-[#0076cd] text-[#0076cd] text-sm font-semibold hover:bg-[#0076cd]/5 transition-colors"
           >
             Print / Save Results
           </button>
           <Link
             href="/"
-            className="px-6 py-2 rounded-md bg-[#fff504] text-[#0927eb] text-sm font-semibold hover:bg-[#e6dc04] transition-colors text-center"
+            className="px-6 py-2 rounded-md bg-[#fff504] text-[#0076cd] text-sm font-semibold hover:bg-[#e6dc04] transition-colors text-center"
           >
             Submit Another Response
           </Link>

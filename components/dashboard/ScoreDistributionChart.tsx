@@ -1,8 +1,10 @@
-﻿"use client";
+"use client";
 
+import { useState } from "react";
 import { Bar, BarChart, CartesianGrid, Cell, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { getScoreDistribution } from "@/lib/dashboardUtils";
 import { SF12Response } from "@/lib/types";
+import ChartModal from "./ChartModal";
 
 interface ScoreDistributionChartProps {
   responses: SF12Response[];
@@ -16,9 +18,8 @@ const BAND_COLORS: Record<string, string> = {
   "Above Average": "#16a34a",
 };
 
-export default function ScoreDistributionChart({ responses, field, title }: ScoreDistributionChartProps) {
+function ChartContent({ responses, field, height }: { responses: SF12Response[]; field: "pcs12" | "mcs12"; height: number }) {
   const dist = getScoreDistribution(responses, field);
-
   const data = [
     { name: "Below Average", count: dist.belowAverage.count, pct: dist.belowAverage.pct },
     { name: "Average", count: dist.average.count, pct: dist.average.pct },
@@ -26,16 +27,13 @@ export default function ScoreDistributionChart({ responses, field, title }: Scor
   ];
 
   return (
-    <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-4 sm:p-6">
-      <h3 className="font-semibold text-[#0927eb] mb-4">{title}</h3>
-      <ResponsiveContainer width="100%" height={220}>
+    <>
+      <ResponsiveContainer width="100%" height={height}>
         <BarChart data={data}>
           <CartesianGrid strokeDasharray="3 3" vertical={false} />
           <XAxis dataKey="name" tick={{ fontSize: 12 }} />
           <YAxis allowDecimals={false} tick={{ fontSize: 12 }} />
-          <Tooltip
-            formatter={(value) => [`${value}`, "Respondents"]}
-          />
+          <Tooltip formatter={(value) => [`${value}`, "Respondents"]} />
           <Bar dataKey="count" radius={[4, 4, 0, 0]}>
             {data.map((entry) => (
               <Cell key={entry.name} fill={BAND_COLORS[entry.name]} />
@@ -53,6 +51,34 @@ export default function ScoreDistributionChart({ responses, field, title }: Scor
           </div>
         ))}
       </div>
-    </div>
+    </>
+  );
+}
+
+export default function ScoreDistributionChart({ responses, field, title }: ScoreDistributionChartProps) {
+  const [expanded, setExpanded] = useState(false);
+
+  return (
+    <>
+      <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-4 sm:p-6">
+        <div className="flex items-center justify-between mb-4">
+          <h3 className="font-semibold text-gray-900">{title}</h3>
+          <button
+            type="button"
+            onClick={() => setExpanded(true)}
+            className="text-xs text-gray-400 hover:text-gray-600 border border-gray-200 rounded px-2 py-1"
+          >
+            ⛶ Expand
+          </button>
+        </div>
+        <ChartContent responses={responses} field={field} height={220} />
+      </div>
+
+      {expanded && (
+        <ChartModal title={title} onClose={() => setExpanded(false)}>
+          <ChartContent responses={responses} field={field} height={420} />
+        </ChartModal>
+      )}
+    </>
   );
 }

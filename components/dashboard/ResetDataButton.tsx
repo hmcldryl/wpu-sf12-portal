@@ -39,7 +39,7 @@ export default function ResetDataButton() {
       {open && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4">
           <div className="bg-white rounded-xl shadow-lg max-w-sm w-full p-6">
-            <h3 className="text-lg font-semibold text-[#0927eb] mb-2">Reset all response data?</h3>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Reset all response data?</h3>
             <p className="text-sm text-gray-600 mb-4">
               This will permanently delete all submitted SF-12 responses from the database. This
               action cannot be undone.

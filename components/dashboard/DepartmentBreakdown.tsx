@@ -1,8 +1,10 @@
-﻿"use client";
+"use client";
 
+import { useState } from "react";
 import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { groupByField } from "@/lib/dashboardUtils";
 import { SF12Response } from "@/lib/types";
+import ChartModal from "./ChartModal";
 
 interface DepartmentBreakdownProps {
   responses: SF12Response[];
@@ -10,31 +12,18 @@ interface DepartmentBreakdownProps {
   title: string;
 }
 
-export default function DepartmentBreakdown({ responses, field, title }: DepartmentBreakdownProps) {
-  const groups = groupByField(responses, field);
-
-  const data = Object.entries(groups)
-    .map(([name, stats]) => ({
-      name,
-      count: stats.count,
-      avgPCS: parseFloat(stats.avgPCS.toFixed(2)),
-      avgMCS: parseFloat(stats.avgMCS.toFixed(2)),
-    }))
-    .sort((a, b) => b.avgPCS - a.avgPCS);
-
+function ChartContent({ data, itemHeight, title }: { data: { name: string; count: number; avgPCS: number; avgMCS: number }[]; itemHeight: number; title: string }) {
   return (
-    <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-4 sm:p-6">
-      <h3 className="font-semibold text-[#0927eb] mb-4">{title}</h3>
-
-      <ResponsiveContainer width="100%" height={Math.max(220, data.length * 50)}>
+    <>
+      <ResponsiveContainer width="100%" height={Math.max(220, data.length * itemHeight)}>
         <BarChart data={data} layout="vertical" margin={{ left: 24 }}>
           <CartesianGrid strokeDasharray="3 3" horizontal={false} />
           <XAxis type="number" domain={[0, 100]} tick={{ fontSize: 12 }} />
           <YAxis type="category" dataKey="name" tick={{ fontSize: 12 }} width={120} />
           <Tooltip />
           <Legend />
-          <Bar dataKey="avgPCS" name="Avg PCS-12" fill="#0927eb" radius={[0, 4, 4, 0]} />
-          <Bar dataKey="avgMCS" name="Avg MCS-12" fill="#fff504" radius={[0, 4, 4, 0]} />
+          <Bar dataKey="avgPCS" name="Avg PCS-12" fill="#0076cd" radius={[0, 4, 4, 0]} />
+          <Bar dataKey="avgMCS" name="Avg MCS-12" fill="#35a529" radius={[0, 4, 4, 0]} />
         </BarChart>
       </ResponsiveContainer>
 
@@ -60,6 +49,44 @@ export default function DepartmentBreakdown({ responses, field, title }: Departm
           </tbody>
         </table>
       </div>
-    </div>
+    </>
+  );
+}
+
+export default function DepartmentBreakdown({ responses, field, title }: DepartmentBreakdownProps) {
+  const [expanded, setExpanded] = useState(false);
+
+  const groups = groupByField(responses, field);
+  const data = Object.entries(groups)
+    .map(([name, stats]) => ({
+      name,
+      count: stats.count,
+      avgPCS: parseFloat(stats.avgPCS.toFixed(2)),
+      avgMCS: parseFloat(stats.avgMCS.toFixed(2)),
+    }))
+    .sort((a, b) => b.avgPCS - a.avgPCS);
+
+  return (
+    <>
+      <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-4 sm:p-6">
+        <div className="flex items-center justify-between mb-4">
+          <h3 className="font-semibold text-gray-900">{title}</h3>
+          <button
+            type="button"
+            onClick={() => setExpanded(true)}
+            className="text-xs text-gray-400 hover:text-gray-600 border border-gray-200 rounded px-2 py-1"
+          >
+            ⛶ Expand
+          </button>
+        </div>
+        <ChartContent data={data} itemHeight={50} title={title} />
+      </div>
+
+      {expanded && (
+        <ChartModal title={title} onClose={() => setExpanded(false)}>
+          <ChartContent data={data} itemHeight={65} title={title} />
+        </ChartModal>
+      )}
+    </>
   );
 }

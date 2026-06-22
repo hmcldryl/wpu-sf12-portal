@@ -3,14 +3,14 @@
 :root {
   --background: #ffffff;
   --foreground: #1a1a1a;
-  --color-navy: #0927eb;
+  --color-navy: #0076cd;
   --color-gold: #fff504;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-navy: #0927eb;
+  --color-navy: #0076cd;
   --color-navy-light: #3347f0;
   --color-gold: #fff504;
   --color-gold-light: #e6dc04;
