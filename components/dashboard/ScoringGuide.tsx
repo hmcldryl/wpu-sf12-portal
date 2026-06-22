@@ -144,7 +144,7 @@ export default function ScoringGuide() {
             Lookup table values, formulas, and score band definitions
           </p>
         </div>
-        <span className="text-gray-400 text-lg select-none">{open ? "^" : "˅"}</span>
+        <span className="text-gray-400 text-lg select-none">{open ? "︿" : "﹀"}</span>
       </button>
 
       {open && (
@@ -231,7 +231,7 @@ export default function ScoringGuide() {
               >
                 orthotoolkit.com/sf-12/
               </a>
-              {" Â· "}
+              {" · "}
               Source:{" "}
               <a
                 href="https://doi.org/10.1097/00005650-199603000-00003"

@@ -92,7 +92,7 @@ export default function ConfigPage() {
             href="/dashboard"
             className="text-sm text-[#fff504] hover:text-white transition-colors"
           >
-            â† Back to Dashboard
+            ← Back to Dashboard
           </Link>
         </div>
       </header>
@@ -119,7 +119,7 @@ export default function ConfigPage() {
           </p>
           <p className="text-xs text-gray-400 mt-1">
             Formula: <span className="font-mono">PCS-12 = Σ(physicalΔ) + 56.57706</span>
-            {" Â· "}
+            {" · "}
             <span className="font-mono">MCS-12 = Σ(mentalΔ) + 60.75781</span>
           </p>
         </div>
@@ -131,7 +131,7 @@ export default function ConfigPage() {
             disabled={status === "saving"}
             className="px-4 py-2 bg-[#0927eb] text-white text-sm rounded-lg hover:bg-[#0f2a45] disabled:opacity-50 transition-colors"
           >
-            {status === "saving" ? "Savingâ€¦" : "Save Changes"}
+            {status === "saving" ? "Saving…" : "Save Changes"}
           </button>
           <button
             onClick={handleReset}
@@ -161,7 +161,7 @@ export default function ConfigPage() {
                 <span className="text-sm font-semibold text-[#0927eb]">
                   {q} — {qDef.text}
                 </span>
-                <span className="text-gray-400 select-none">{isOpen ? "^" : "˅"}</span>
+                <span className="text-gray-400 select-none">{isOpen ? "︿" : "﹀"}</span>
               </button>
 
               {isOpen && (

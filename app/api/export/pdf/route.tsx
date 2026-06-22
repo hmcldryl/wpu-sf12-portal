@@ -57,8 +57,8 @@ function ReportDocument({ responses }: ReportProps) {
       {/* Page 2 — Executive Summary */}
       <Page size="A4" style={styles.page}>
         <Text style={styles.sectionTitle}>Executive Summary</Text>
-        <Text style={styles.text}>Average PCS-12: {stats.avgPCS.toFixed(2)} (Â±{stats.sdPCS.toFixed(2)})</Text>
-        <Text style={styles.text}>Average MCS-12: {stats.avgMCS.toFixed(2)} (Â±{stats.sdMCS.toFixed(2)})</Text>
+        <Text style={styles.text}>Average PCS-12: {stats.avgPCS.toFixed(2)} (±{stats.sdPCS.toFixed(2)})</Text>
+        <Text style={styles.text}>Average MCS-12: {stats.avgMCS.toFixed(2)} (±{stats.sdMCS.toFixed(2)})</Text>
         <Text style={styles.text}>
           Respondents below average on PCS: {belowPCS} ({((belowPCS / total) * 100).toFixed(1)}%)
         </Text>

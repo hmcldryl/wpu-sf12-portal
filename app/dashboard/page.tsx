@@ -86,12 +86,12 @@ export default async function DashboardPage() {
           <StatCard
             label="Avg PCS-12"
             value={stats.avgPCS.toFixed(2)}
-            detail={`Â±${stats.sdPCS.toFixed(2)} SD`}
+            detail={`±${stats.sdPCS.toFixed(2)} SD`}
           />
           <StatCard
             label="Avg MCS-12"
             value={stats.avgMCS.toFixed(2)}
-            detail={`Â±${stats.sdMCS.toFixed(2)} SD`}
+            detail={`±${stats.sdMCS.toFixed(2)} SD`}
           />
           <StatCard
             label="Below Average (either)"

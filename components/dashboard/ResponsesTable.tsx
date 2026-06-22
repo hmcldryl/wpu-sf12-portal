@@ -85,7 +85,7 @@ export default function ResponsesTable({ responses }: ResponsesTableProps) {
 
   function sortIndicator(key: SortKey) {
     if (sortKey !== key) return "";
-    return sortDir === "asc" ? " ^" : " ˅";
+    return sortDir === "asc" ? " ︿" : " ﹀";
   }
 
   const columns: { key: SortKey; label: string }[] = [

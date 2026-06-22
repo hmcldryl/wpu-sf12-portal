@@ -151,7 +151,7 @@ export default function ResultsPage() {
       </main>
 
       <footer className="bg-gray-50 border-t border-gray-200 py-4 px-4 text-center text-xs text-gray-500">
-        SF-12v1 Health Survey Â© Ware, Kosinski &amp; Keller (1996). Scores are norm-based
+        SF-12v1 Health Survey © Ware, Kosinski &amp; Keller (1996). Scores are norm-based
         relative to the US general population (mean = 50, SD = 10).
       </footer>
     </div>
