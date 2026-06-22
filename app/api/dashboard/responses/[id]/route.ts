@@ -12,7 +12,21 @@ export async function DELETE(
 
   try {
     const db = getAdminDb();
-    await db.collection("sf12_responses").doc(id).delete();
+    const ref = db.collection("sf12_responses").doc(id);
+    const snap = await ref.get();
+    const timestamp: string | undefined = snap.data()?.timestamp;
+
+    await ref.delete();
+
+    const gasUrl = process.env.GAS_WEBHOOK_URL;
+    if (gasUrl && timestamp) {
+      fetch(gasUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "delete", timestamp }),
+      }).catch((err) => console.error("Failed to notify GAS of delete:", err));
+    }
+
     return NextResponse.json({ success: true });
   } catch (err) {
     console.error("Failed to delete response:", err);

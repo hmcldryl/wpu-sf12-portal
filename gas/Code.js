@@ -1,6 +1,11 @@
 function doPost(e) {
   try {
     const data = JSON.parse(e.postData.contents);
+
+    if (data.action === 'delete') {
+      return handleDelete(data.timestamp);
+    }
+
     const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
 
     // Write header row on first submission
@@ -46,6 +51,35 @@ function doPost(e) {
 
     return ContentService
       .createTextOutput(JSON.stringify({ success: true }))
+      .setMimeType(ContentService.MimeType.JSON);
+
+  } catch (err) {
+    return ContentService
+      .createTextOutput(JSON.stringify({ success: false, error: err.toString() }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+function handleDelete(timestamp) {
+  try {
+    const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+    const lastRow = sheet.getLastRow();
+
+    for (var i = lastRow; i >= 2; i--) {
+      const cellVal = sheet.getRange(i, 1).getValue();
+      const cellStr = cellVal instanceof Date
+        ? cellVal.toISOString()
+        : String(cellVal);
+      if (cellStr === timestamp) {
+        sheet.deleteRow(i);
+        return ContentService
+          .createTextOutput(JSON.stringify({ success: true, deletedRow: i }))
+          .setMimeType(ContentService.MimeType.JSON);
+      }
+    }
+
+    return ContentService
+      .createTextOutput(JSON.stringify({ success: false, error: 'Row not found' }))
       .setMimeType(ContentService.MimeType.JSON);
 
   } catch (err) {
